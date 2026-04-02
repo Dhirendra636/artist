@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Tribal Arts</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Dual-layer header style */
+        .dual-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero section for the page header with a title */
+        .hero {
+            height: 40vh;
+            background-image: url('https://source.unsplash.com/random/1920x1080/?shopping-cart,tribal-art');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* General section styling for spacing */
+        .page-section {
+            padding: 6rem 0;
+            background-color: #f4f4f9;
+        }
+        
+        /* Footer styles */
+        .footer {
+            background-color: #0a2342;
+            color: #E0E0E0;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #E0E0E0;
+        }
+        
+        .footer-about p,
+        .footer-links a,
+        .footer-contact p {
+            font-size: 0.9rem;
+            color: #BBB;
+            text-decoration: none;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links a:hover {
+            color: #b78939;
+        }
+        
+        .footer-newsletter input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background-color: #333333;
+            color: #FFFFFF;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-newsletter button {
+            width: 100%;
+            background-color: #b78939;
+            color: #FFFFFF;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .footer-newsletter button:hover {
+            background-color: #a37b31;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        .footer-bottom a {
+            color: #888;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .page-section h2 {
+                font-size: 2rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dual-layer header (copied from index.html) -->
+    <div class="dual-header">
+        <!-- Top bar -->
+        <header class="bg-white border-b border-gray-100 py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Brand and logo -->
+                <div class="flex items-center space-x-3">
+                    <svg class="w-10 h-10 text-[#b78939]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 21h20L12 2zM12 5.86L6.5 16h11L12 5.86z"/>
+                    </svg>
+                    <span class="text-2xl md:text-3xl font-extrabold text-[#0a2342] tracking-tight">Tribal <span class="text-[#b78939]">Arts</span></span>
+                </div>
+                <!-- Log in / cart button -->
+                <div class="flex items-center space-x-5">
+                    <a href="cart.html" class="relative text-[#0a2342] hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <!-- Cart item count -->
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-[#b78939] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </a>
+                    <a href="login.html" class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center">
+                        Log In
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation bar -->
+        <header class="bg-[#0a2342] text-white py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Navigation links -->
+                <nav class="flex space-x-8 text-lg font-medium">
+                    <a href="index.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Home
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="shop.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Shop
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="artists.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Artists
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="about.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="contact.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Contact
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                </nav>
+                <!-- Search bar -->
+                <div class="hidden md:flex items-center relative">
+                    <input type="text" placeholder="Search art & artists..." class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner">
+                    <button class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="text-7xl font-extrabold tracking-tight">Your Cart</h1>
+        </div>
+    </section>
+
+    <!-- Cart section -->
+    <section class="page-section">
+        <div class="container flex flex-col lg:flex-row gap-10">
+            <!-- Cart items list -->
+            <div class="w-full lg:w-2/3 bg-white rounded-xl shadow-lg p-8" id="cart-items-container">
+                <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Shopping Cart</h2>
+                <!-- Cart items will be dynamically added here -->
+            </div>
+
+            <!-- Cart summary -->
+            <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-lg p-8 h-fit">
+                <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Order Summary</h2>
+                <div class="flex justify-between items-center text-lg mb-3">
+                    <p class="text-gray-600">Subtotal:</p>
+                    <p class="font-semibold text-[#333333]" id="subtotal">₹ 0.00</p>
+                </div>
+                <div class="flex justify-between items-center text-lg mb-3">
+                    <p class="text-gray-600">Tax (18%):</p>
+                    <p class="font-semibold text-[#333333]" id="tax">₹ 0.00</p>
+                </div>
+                <div class="flex justify-between items-center text-2xl font-bold border-t border-gray-200 pt-4 mt-4">
+                    <p class="text-[#0a2342]">Total:</p>
+                    <p class="text-[#b78939]" id="total">₹ 0.00</p>
+                </div>
+                <a href="Proceed.html" class="w-full mt-8 bg-[#b78939] text-white py-4 rounded-full font-bold text-lg hover:bg-[#a37b31] transition-colors duration-300 block text-center">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-about">
+                <h3 class="footer-logo">Tribal Arts</h3>
+                <p>Handcrafted premium art made with sustainable materials and heritage techniques, bringing timeless style to modern life.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="currentColor">
+                            <path d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256zM294.6 288l14.1 82.5c1.4 8.2 8.3 14.4 16.6 14.4h39.7c8.5 0 16.5-6.5 17.6-14.9L464 256.4c1.1-7.8-3.4-15.4-10.9-18.4l-68-27.2-2.1-40.8c-2.1-2.9-4.8-4.9-8-5.7-15.6-3.8-29.2 1.3-35.8 11.2-11.2 16.8-19.3 35.8-23.8 56.4-3.4 15.6 2.5 32 14.9 44.8 12.4 12.8 28.2 20.3 45.3 20.3h7.2zM216.5 288l14.1 82.5c1.4 8.2 8.3 14.4 16.6 14.4h39.7c8.5 0 16.5-6.5 17.6-14.9L316.4 256.4c1.1-7.8-3.4-15.4-10.9-18.4l-68-27.2-2.1-40.8c-2.1-2.9-4.8-4.9-8-5.7-15.6-3.8-29.2 1.3-35.8 11.2-11.2 16.8-19.3 35.8-23.8 56.4-3.4 15.6 2.5 32 14.9 44.8 12.4 12.8 28.2 20.3 45.3 20.3h7.2z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" fill="currentColor">
+                            <path d="M224.1 123.6c-24.8 0-44.9 20.1-44.9 44.9s20.1 44.9 44.9 44.9s44.9-20.1 44.9-44.9s-20.1-44.9-44.9-44.9zM224 376c-84.3 0-152.8-68.5-152.8-152.8S139.7 70.4 224 70.4s152.8 68.5 152.8 152.8S308.3 376 224 376zM224 0c123.7 0 224 100.3 224 224S347.7 448 224 448 0 347.7 0 224 100.3 0 224 0zm117.8 250c-2.3-15.6-17.1-27.9-33.7-30.8-16.6-2.9-34.1-1.2-51.4 5.3-17.3 6.5-33.3 16.4-48.4 29.5-15.1 13.1-29.3 29.8-42.2 49.3-12.9 19.5-23.1 40.7-30.6 63.3-7.5 22.6-12.2 46.2-14.1 70.7-1.9 24.5-1.9 49.2 0 73.7 1.9 24.5 5.2 48.7 10 71.9 4.8 23.2 11.8 45.4 21 66.8 9.2 21.4 19.8 41.5 31.7 60.5 11.9 19 25.1 36.8 39.5 53.6 14.4 16.8 29.9 32.5 46.6 47.1 16.7 14.6 34.5 28.4 53.1 40.9s38.8 23.5 60.1 32.9c21.3 9.4 43.1 15.6 65.2 18.6 22.1 3 44.4 2.8 66.4-.6s43.6-10.4 63.3-21.7c19.7-11.3 37.9-25.2 54.7-41.8s31.7-35.8 45.5-56.1c13.8-20.3 24.4-42.9 31.8-66.8 7.4-23.9 11.5-48.8 12.1-74.1.6-25.3-.2-50.5-2.6-75.1-2.4-24.6-6.8-48.2-13.2-70.9-6.4-22.7-14.7-44.5-25.3-65.4s-23.1-40.9-37.1-59.3c-14-18.4-29.7-34.9-47.3-49.4s-37.5-27-58.8-35.5c-21.3-8.5-43.2-13.6-65.3-15.3-22.1-1.7-44.4-1.2-66.5 1.5s-43.7 8.3-63.5 19.2c-19.8 10.9-37.9 24.9-54.3 42.1s30.8 36.7 43.1 58.1c12.3 21.4 22.5 44.2 30.5 67.9 8 23.7 13 48.4 15 73.5 2 25.1 2.1 50.1 0 74.9-.4 4.8-1 9.6-1.8 14.4H224.1zM117.8 250c2.3-15.6 17.1-27.9 33.7-30.8 16.6-2.9 34.1-1.2 51.4 5.3s33.3 16.4 48.4 29.5c15.1 13.1 29.3 29.8 42.2 49.3 12.9 19.5 23.1 40.7 30.6 63.3 7.5 22.6 12.2 46.2 14.1 70.7 1.9 24.5 1.9 49.2 0 73.7-1.9 24.5-5.2 48.7-10 71.9-4.8 23.2-11.8 45.4-21 66.8s-19.8 41.5-31.7 60.5c-11.9 19-25.1 36.8-39.5 53.6-14.4 16.8-29.9 32.5-46.6 47.1-16.7 14.6-34.5 28.4-53.1 40.9s-38.8 23.5-60.1 32.9c-21.3 9.4-43.1 15.6-65.2 18.6-22.1 3-44.4 2.8-66.4-.6s-43.6-10.4-63.3-21.7c-19.7-11.3-37.9-25.2-54.7-41.8-16.8-16.6-31.7-35.8-45.5-56.1-13.8-20.3-24.4-42.9-31.8-66.8-7.4-23.9-11.5-48.8-12.1-74.1-.6-25.3.2-50.5 2.6-75.1s6.8-48.2 13.2-70.9c6.4-22.7 14.7-44.5 25.3-65.4s23.1-40.9 37.1-59.3c14-18.4 29.7-34.9 47.3-49.4s37.5-27 58.8-35.5c21.3-8.5 43.2-13.6 65.3-15.3 22.1-1.7 44.4-1.2 66.5 1.5s43.7 8.3 63.5 19.2c19.8 10.9 37.9 24.9 54.3 42.1s30.8 36.7 43.1 58.1c12.3 21.4 22.5 44.2 30.5 67.9 8 23.7 13 48.4 15 73.5 2 25.1 2.1 50.1 0 74.9-.4 4.8-1 9.6-1.8 14.4H117.8z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Twitter" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24" fill="currentColor">
+                            <path d="M459.4 151.7c.3 4.5 .3 9 .3 13.5 0 138.7-105.6 298.6-298.6 298.6-59.4 0-114.6-17.2-161.1-47.3 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.4-44.8-46.1-1-84.8-31.3-98.1-72.7 6.3 1 12.6 1.6 19.2 1.6 9.4 0 18.8-1.3 27.6-3.6-48.9-10.4-86.2-52.5-86.2-104.9v-1.1c14.7 8.1 32 13.2 50.4 13.8-29.3-19.8-49.9-53.1-49.9-90.8 0-20.1 5.8-38.7 15.6-54.4 54.5 67.3 134.5 111.4 225.4 116.3-1.8-8.1-2.8-16.8-2.8-25.7 0-62 50.6-112.6 112.6-112.6 32.2 0 61.5 13.6 82 35.5 25.5-4.5 49.9-14.4 71.5-27.2-8.4 26.3-26.2 48.2-49.9 62.1 22.6-2.5 44.7-8.8 65-17.9-15.2 22.6-35.7 42.3-58.8 58.6z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Collection</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sourcing</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Care Instructions</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>hello@tribalarts.com</p>
+                <p>+91 9876543210</p>
+                <p>New Delhi, India</p>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Get the latest news about new collections and exclusive offers.</p>
+                <input type="email" placeholder="Enter your email" aria-label="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tribal Arts. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const subtotalElement = document.getElementById('subtotal');
+        const taxElement = document.getElementById('tax');
+        const totalElement = document.getElementById('total');
+        const cartCountElement = document.getElementById('cart-count');
+
+        /**
+         * Loads cart data from local storage.
+         * @returns {Array} An array of cart items.
+         */
+        function getCart() {
+            const cartData = localStorage.getItem('cart');
+            return cartData ? JSON.parse(cartData) : [];
+        }
+
+        /**
+         * Saves cart data to local storage.
+         * @param {Array} cart - The cart array to save.
+         */
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        /**
+         * Renders the cart items on the page based on data from local storage.
+         */
+        function renderCart() {
+            let cart = getCart();
+            cartItemsContainer.innerHTML = ''; // Clear existing items
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center text-lg text-gray-500">Your cart is empty.</p>';
+                updateTotals(cart);
+                updateCartCount(cart);
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('flex', 'flex-col', 'sm:flex-row', 'items-center', 'justify-between', 'py-4', 'border-b', 'border-gray-200');
+                itemElement.innerHTML = `
+                    <div class="flex items-center gap-4 w-full sm:w-1/2 mb-4 sm:mb-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+                        <div class="flex flex-col">
+                            <h3 class="font-bold text-lg">${item.name}</h3>
+                            <p class="text-gray-600">₹ ${item.price.toLocaleString('en-IN')}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 justify-between sm:justify-end w-full sm:w-1/2">
+                        <div class="flex items-center space-x-2">
+                            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 transition" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span class="font-medium text-lg">${item.quantity}</span>
+                            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 transition" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <p class="font-bold text-lg w-28 text-right">₹ ${(item.price * item.quantity).toLocaleString('en-IN')}</p>
+                        <button class="text-red-500 hover:text-red-700 transition ml-4" onclick="removeItem(${item.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            updateTotals(cart);
+            updateCartCount(cart);
+        }
+
+        /**
+         * Updates the quantity of a product in the cart.
+         * @param {number} id - The ID of the product.
+         * @param {number} change - The amount to change the quantity by (+1 or -1).
+         */
+        function updateQuantity(id, change) {
+            let cart = getCart();
+            const item = cart.find(p => p.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeItem(id);
+                } else {
+                    saveCart(cart);
+                    renderCart();
+                }
+            }
+        }
+
+        /**
+         * Removes a product from the cart.
+         * @param {number} id - The ID of the product.
+         */
+        function removeItem(id) {
+            let cart = getCart();
+            cart = cart.filter(p => p.id !== id);
+            saveCart(cart);
+            renderCart();
+        }
+
+        /**
+         * Calculates and updates the subtotal, tax, and total.
+         */
+        function updateTotals(cart) {
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const taxRate = 0.18; // 18%
+            const tax = subtotal * taxRate;
+            const total = subtotal + tax;
+
+            subtotalElement.textContent = `₹ ${subtotal.toLocaleString('en-IN')}`;
+            taxElement.textContent = `₹ ${tax.toLocaleString('en-IN')}`;
+            totalElement.textContent = `₹ ${total.toLocaleString('en-IN')}`;
+        }
+        
+        /**
+         * Updates the cart count in the header.
+         */
+        function updateCartCount(cart) {
+            cartCountElement.textContent = cart.length;
+        }
+
+        // Initial render on page load
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>

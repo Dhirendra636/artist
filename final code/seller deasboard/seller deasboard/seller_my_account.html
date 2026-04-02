@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://127.0.0.1:5500/hhackathon/seller%20deasboard/seller_my_account.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Tribal Arts</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="./seller_my_account_files/saved_resource"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./seller_my_account_files/css2" rel="stylesheet">
+    <style>
+        /* Base styling */
+
+/* Smooth tab transition */
+.tab-pane {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.tab-pane.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add card hover lift effect */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Fancy input fields */
+.input-field {
+  background: #fdfdfd;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+.input-field:focus {
+  border-color: #b78939;
+  box-shadow: 0 0 0 3px rgba(183, 137, 57, 0.3);
+  background: #fffefc;
+  transition: all 0.3s ease;
+}
+
+/* Buttons glowing effect */
+.submit-button,
+.logout-button {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(10,35,66,0.3);
+}
+.logout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(127,29,29,0.3);
+}
+
+/* Profile image hover effect */
+#profile-picture-preview {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#profile-picture-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(183,137,57,0.4);
+}
+
+/* Hero text animation */
+.hero-content h1 {
+  animation: fadeDown 1s ease forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tab button hover underline animation */
+.tab-button {
+  position: relative;
+  overflow: hidden;
+}
+.tab-button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #b78939;
+  transition: all 0.3s ease;
+}
+.tab-button:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f4f9;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b78939;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a37b31;
+}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Dual-layer header style */
+        .dual-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero section for the page header with a title */
+        .hero {
+            height: 65vh;
+            background:url('122.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffff;
+            position: relative;
+            background-attachment: fixed;
+            animation: moveBackground 20s linear infinite;
+
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* General section styling for spacing */
+        .page-section {
+            padding: 6rem 0;
+            background-color: #f4f4f9;
+        }
+
+        .card {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            transition: border-color 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #b78939;
+        }
+
+        .submit-button {
+            padding: 1rem;
+            font-weight: bold;
+            border-radius: 9999px;
+            background-color: #0a2342;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #333333;
+        }
+
+        .logout-button {
+            padding: 1rem;
+            font-weight: bold;
+            border-radius: 9999px;
+            background-color: #fca5a5;
+            color: #7f1d1d;
+            border: 1px solid #fca5a5;
+            transition: background-color 0.3s;
+        }
+        .logout-button:hover {
+            background-color: #fecaca;
+        }
+
+        .tab-button {
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: #4a5568;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #b78939;
+            border-bottom-color: #b78939;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .page-section h2 {
+                font-size: 2rem;
+            }
+        }
+        @keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position:100% 0;
+}
+}
+    </style>
+<style>* ,::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.absolute{position:absolute}.relative{position:relative}.bottom-0{bottom:0px}.left-0{left:0px}.right-3{right:0.75rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-0\.5{height:0.125rem}.h-10{height:2.5rem}.h-32{height:8rem}.h-6{height:1.5rem}.w-10{width:2.5rem}.w-32{width:8rem}.w-6{width:1.5rem}.w-72{width:18rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.scale-x-0{--tw-scale-x:0;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-6{gap:1.5rem}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-5 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.25rem * var(--tw-space-x-reverse));margin-left:calc(1.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-10 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-\[\#b78939\]{--tw-border-opacity:1;border-color:rgb(183 137 57 / var(--tw-border-opacity, 1))}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-red-200{--tw-border-opacity:1;border-color:rgb(254 202 202 / var(--tw-border-opacity, 1))}.bg-\[\#0a2342\]{--tw-bg-opacity:1;background-color:rgb(10 35 66 / var(--tw-bg-opacity, 1))}.bg-\[\#b78939\]{--tw-bg-opacity:1;background-color:rgb(183 137 57 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-4{padding-left:1rem}.pr-10{padding-right:2.5rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-7xl{font-size:4.5rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.tracking-tight{letter-spacing:-0.025em}.text-\[\#0a2342\]{--tw-text-opacity:1;color:rgb(10 35 66 / var(--tw-text-opacity, 1))}.text-\[\#7f1d1d\]{--tw-text-opacity:1;color:rgb(127 29 29 / var(--tw-text-opacity, 1))}.text-\[\#b78939\]{--tw-text-opacity:1;color:rgb(183 137 57 / var(--tw-text-opacity, 1))}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.placeholder-gray-500::placeholder{--tw-placeholder-opacity:1;color:rgb(107 114 128 / var(--tw-placeholder-opacity, 1))}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:bg-\[\#a37b31\]:hover{--tw-bg-opacity:1;background-color:rgb(163 123 49 / var(--tw-bg-opacity, 1))}.hover\:text-\[\#b78939\]:hover{--tw-text-opacity:1;color:rgb(183 137 57 / var(--tw-text-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-\[\#b78939\]:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(183 137 57 / var(--tw-ring-opacity, 1))}.group:hover .group-hover\:scale-x-100{--tw-scale-x:1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 768px){.md\:inline-block{display:inline-block}.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}}</style></head>
+<body>
+
+    <!-- Dual-Layer Header (Seller Specific) -->
+    <div class="dual-header">
+        <!-- Top Bar -->
+        <header class="bg-white border-b border-gray-100 py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Brand and Logo -->
+                <div class="flex items-center space-x-3">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                        <path d="M12 2L2 21h20L12 2zM12 5.86L6.5 16h11L12 5.86z"></path>
+                    </svg>
+                    <span class="text-2xl md:text-3xl font-extrabold text-[#0a2342] tracking-tight">Tribal <span class="text-[#b78939]">Arts</span></span>
+                </div>
+                <!-- Seller-specific Account Button -->
+                <div class="flex items-center space-x-5">
+                    <a href="seller_my_account.html" class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center">
+                        My Account
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Bar (Seller specific) -->
+        <header class="bg-[#0a2342] text-white py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Navigation Links -->
+                <nav class="flex space-x-8 text-lg font-medium">
+                    <a href="seller_dashboard.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Dashboard
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="add_product.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Add Product
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="my_products.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        My Products
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="seller_orders.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Orders
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                </nav>
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center relative">
+                    <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner">
+                    <button class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="text-7xl font-extrabold tracking-tight">My Account</h1>
+        </div>
+    </section>
+
+    <!-- My Account Section -->
+    <section class="page-section">
+        <div class="container space-y-10">
+            <div class="max-w-3xl mx-auto card">
+                <div class="flex border-b border-gray-200">
+                    <button id="profileTab" class="tab-button active">Profile Settings</button>
+                    <button id="businessTab" class="tab-button">Business Information</button>
+                    <button id="securityTab" class="tab-button">Security</button>
+                </div>
+
+                <div id="tab-content" class="pt-8">
+                    <!-- Profile and Account Settings Tab Content -->
+                    <div id="profileContent" class="tab-pane active space-y-6">
+                        <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Profile Settings</h2>
+                        <form id="profile-form" class="space-y-6">
+                            <div class="flex flex-col items-center space-y-4 mb-6">
+                                <img id="profile-picture-preview" class="w-32 h-32 rounded-full object-cover border-4 border-[#b78939]" src="./seller_my_account_files/6b7280" alt="Profile Picture">
+                                <div>
+                                    <label for="profile-picture-upload" class="bg-[#b78939] text-white px-4 py-2 rounded-full cursor-pointer hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-sm">
+                                        Upload new photo
+                                    </label>
+                                    <input type="file" id="profile-picture-upload" class="hidden" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="full-name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                                    <input type="text" id="full-name" name="full-name" value="Sunil Kumar" class="input-field" required="">
+                                </div>
+                                <div>
+                                    <label for="phone-number" class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                                    <input type="tel" id="phone-number" name="phone-number" value="+91 9876543210" class="input-field" required="">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" value="sunil.kumar@example.com" class="input-field" required="">
+                            </div>
+                            <div>
+                                <label for="address" class="block text-gray-700 font-semibold mb-2">Address</label>
+                                <textarea id="address" name="address" rows="3" class="input-field" required="">Warli Village, Palghar, Maharashtra, India</textarea>
+                            </div>
+                            <button type="submit" class="w-full submit-button">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Business Information Tab Content (initially hidden) -->
+                    <div id="businessContent" class="tab-pane hidden space-y-6">
+                        <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Business Information</h2>
+                        <form id="business-form" class="space-y-6">
+                            <div>
+                                <label for="store-name" class="block text-gray-700 font-semibold mb-2">Store Name</label>
+                                <input type="text" id="store-name" name="store-name" value="Sunil&#39;s Warli Art" class="input-field" required="">
+                            </div>
+                            <div>
+                                <label for="gst-number" class="block text-gray-700 font-semibold mb-2">GST Number</label>
+                                <input type="text" id="gst-number" name="gst-number" placeholder="Enter GST Number" class="input-field">
+                            </div>
+                             <div>
+                                <label for="pan-number" class="block text-gray-700 font-semibold mb-2">PAN Number</label>
+                                <input type="text" id="pan-number" name="pan-number" placeholder="Enter PAN Number" class="input-field">
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-[#b78939] mb-4">Bank Details</h3>
+                                <div>
+                                    <label for="bank-name" class="block text-gray-700 font-semibold mb-2">Bank Name</label>
+                                    <input type="text" id="bank-name" name="bank-name" placeholder="Enter Bank Name" class="input-field">
+                                </div>
+                                <div>
+                                    <label for="account-number" class="block text-gray-700 font-semibold mb-2">Account Number</label>
+                                    <input type="text" id="account-number" name="account-number" placeholder="Enter Account Number" class="input-field">
+                                </div>
+                                <div>
+                                    <label for="ifsc-code" class="block text-gray-700 font-semibold mb-2">IFSC Code</label>
+                                    <input type="text" id="ifsc-code" name="ifsc-code" placeholder="Enter IFSC Code" class="input-field">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full submit-button">Update Business Info</button>
+                        </form>
+                    </div>
+
+                    <!-- Security Tab Content (initially hidden) -->
+                    <div id="securityContent" class="tab-pane hidden space-y-6">
+                        <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Security</h2>
+                        <form id="password-form" class="space-y-6">
+                            <div>
+                                <label for="current-password" class="block text-gray-700 font-semibold mb-2">Current Password</label>
+                                <input type="password" id="current-password" name="current-password" placeholder="Enter current password" class="input-field" required="">
+                            </div>
+                            <div>
+                                <label for="new-password" class="block text-gray-700 font-semibold mb-2">New Password</label>
+                                <input type="password" id="new-password" name="new-password" placeholder="Enter new password" class="input-field" required="">
+                            </div>
+                            <div>
+                                <label for="confirm-password" class="block text-gray-700 font-semibold mb-2">Confirm New Password</label>
+                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" class="input-field" required="">
+                            </div>
+                            <button type="submit" class="w-full submit-button">Change Password</button>
+                        </form>
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                             <div class="bg-red-50 p-6 rounded-xl border border-red-200">
+                                <h3 class="text-2xl font-bold text-[#7f1d1d] mb-4">Log Out</h3>
+                                <p class="text-gray-700 mb-6">
+                                    Logging out will end your current session. You will need to log in again to access your seller dashboard.
+                                </p>
+                                <button id="logout-button" class="w-full logout-button">Log Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const profileTab = document.getElementById('profileTab');
+        const businessTab = document.getElementById('businessTab');
+        const securityTab = document.getElementById('securityTab');
+
+        const profileContent = document.getElementById('profileContent');
+        const businessContent = document.getElementById('businessContent');
+        const securityContent = document.getElementById('securityContent');
+
+        const profileForm = document.getElementById('profile-form');
+        const businessForm = document.getElementById('business-form');
+        const passwordForm = document.getElementById('password-form');
+        const logoutButton = document.getElementById('logout-button');
+        const profilePictureUpload = document.getElementById('profile-picture-upload');
+        const profilePicturePreview = document.getElementById('profile-picture-preview');
+
+        // Function to switch tabs
+        function switchTab(activeTab) {
+            // Deactivate all tabs
+            profileTab.classList.remove('active');
+            businessTab.classList.remove('active');
+            securityTab.classList.remove('active');
+
+            // Hide all content panes
+            profileContent.classList.add('hidden');
+            businessContent.classList.add('hidden');
+            securityContent.classList.add('hidden');
+
+            // Activate the selected tab and show its content
+            if (activeTab === 'profile') {
+                profileTab.classList.add('active');
+                profileContent.classList.remove('hidden');
+            } else if (activeTab === 'business') {
+                businessTab.classList.add('active');
+                businessContent.classList.remove('hidden');
+            } else if (activeTab === 'security') {
+                securityTab.classList.add('active');
+                securityContent.classList.remove('hidden');
+            }
+        }
+
+        // Add event listeners for tab clicks
+        profileTab.addEventListener('click', () => switchTab('profile'));
+        businessTab.addEventListener('click', () => switchTab('business'));
+        securityTab.addEventListener('click', () => switchTab('security'));
+
+        // Handle profile picture preview
+        profilePictureUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profilePicturePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission handlers (prevent default and simulate action)
+        profileForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // In a real app, you'd send data to a server
+            alert('Profile updated successfully!');
+        });
+
+        businessForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // In a real app, you'd send data to a server
+            alert('Business information updated successfully!');
+        });
+
+        passwordForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // In a real app, you'd send data to a server
+            alert('Password changed successfully!');
+        });
+        
+        logoutButton.addEventListener('click', () => {
+            alert('Logging you out...');
+            // In a real app, this would redirect to the login page
+            window.location.href = 'login.html'; 
+        });
+        
+        // Ensure the correct tab is active on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash === 'business') {
+                switchTab('business');
+            } else if (hash === 'security') {
+                switchTab('security');
+            } else {
+                switchTab('profile'); // Default to profile tab
+            }
+        });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

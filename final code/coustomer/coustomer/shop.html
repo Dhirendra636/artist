@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop - Tribal Arts</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base styling */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f9;
+        color: #333333;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Dual-layer header style (copied from index.html) */
+      .dual-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Hero section for the page header with a title */
+      .hero {
+        height: 40vh;
+        background-image: url("https://source.unsplash.com/random/1920x1080/?tribal-market,handicrafts");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        position: relative;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin: 0;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+
+      /* General section styling for spacing */
+      .page-section {
+        padding: 6rem 0;
+        background-color: #f4f4f9;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card img {
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .product-details {
+        padding: 1.5rem;
+      }
+
+      /* Active filter link style */
+      .filter-link.active {
+        font-weight: bold;
+        color: #b78939;
+      }
+
+      /* Footer styles (copied from index.html) */
+      .footer {
+        background-color: #0a2342;
+        color: #e0e0e0;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        border-bottom: 1px solid #444;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: #e0e0e0;
+      }
+
+      .footer-about p,
+      .footer-links a,
+      .footer-contact p {
+        font-size: 0.9rem;
+        color: #bbb;
+        text-decoration: none;
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links a:hover {
+        color: #b78939;
+      }
+
+      .footer-newsletter input {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        background-color: #333333;
+        color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-newsletter button {
+        width: 100%;
+        background-color: #b78939;
+        color: #ffffff;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .footer-newsletter button:hover {
+        background-color: #a37b31;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+      }
+
+      .footer-bottom a {
+        color: #888;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .nav-links {
+          justify-content: center;
+          gap: 1rem;
+        }
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .page-section h2 {
+          font-size: 2rem;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dual-layer header (copied from index.html) -->
+    <div class="dual-header">
+      <!-- Top bar -->
+      <header class="bg-white border-b border-gray-100 py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Brand and logo -->
+          <div class="flex items-center space-x-3">
+            <!-- Logo -->
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+
+            <!-- Text -->
+            <span
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0a2342] tracking-tight"
+            >
+              Tribal <span class="text-[#b78939]">Arts</span>
+            </span>
+          </div>
+          <!-- Log in / cart button -->
+          <div class="flex items-center space-x-5">
+            <a
+              href="cart.html"
+              class="relative text-[#0a2342] hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                ></path>
+              </svg>
+              <!-- Cart item count, now dynamic -->
+              <span
+                id="cart-count"
+                class="absolute -top-1 -right-1 bg-[#b78939] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="login.html"
+              class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center"
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation bar -->
+      <header class="bg-[#0a2342] text-white py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Navigation links -->
+          <nav class="flex space-x-8 text-lg font-medium">
+            <a
+              href="index.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Home
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="shop.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Shop
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="artists.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Artists
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="about.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              About
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="contact.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Contact
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+          </nav>
+          <!-- Search bar -->
+          <div class="hidden md:flex items-center relative">
+            <input
+              type="text"
+              placeholder="Search art & artists..."
+              class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner"
+            />
+            <button
+              class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Hero section -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap");
+
+      /* Keyframe for the wipe reveal effect */
+      @keyframes wipe-reveal {
+        from {
+          clip-path: inset(0 100% 0 0);
+        }
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      /* Keyframe for the text fade-in */
+      @keyframes fade-in-up-small {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-compact {
+        /* Smaller height for a banner-style hero */
+        height: 60vh;
+        min-height: 400px;
+        background-color: #e2e8f0; /* Fallback color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .hero-compact-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        /* The background image that gets revealed */
+        background-image: linear-gradient(
+            rgba(10, 35, 66, 0.6),
+            rgba(10, 35, 66, 0.6)
+          ),
+          url("./assets/104.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+
+        /* Applying the animation */
+        animation: wipe-reveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      .hero-compact-content h1,
+      .hero-compact-content p {
+        opacity: 0;
+        animation: fade-in-up-small 1s ease-out forwards;
+        animation-delay: 0.8s; /* Delay to let the wipe start first */
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+
+    <section class="hero-compact">
+      <div class="hero-compact-content">
+        <h1
+          class="text-5xl md:text-6xl font-extrabold tracking-tight"
+          style="font-family: 'Playfair Display', serif"
+        >
+          Shop All Art
+        </h1>
+        <p
+          class="mt-4 text-lg max-w-lg"
+          style="font-family: 'Roboto', sans-serif"
+        >
+          A celebration of heritage, handcrafted for the modern world.
+        </p>
+      </div>
+    </section>
+    <!-- Main shop section with filter sidebar -->
+    <style>
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Base state for animated elements */
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+
+      /* Creative Filter Sidebar */
+      .filter-sidebar-creative {
+        background-color: white;
+        border-radius: 1.5rem; /* More rounded */
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      /* Styling for Filter Links */
+      .filter-link-creative {
+        position: relative;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px; /* Pill shape */
+        transition: color 0.3s ease, background-color 0.3s ease;
+        font-weight: 500;
+        color: #4a5568; /* Tailwind gray-700 */
+      }
+
+      .filter-link-creative:hover {
+        color: #0a2342;
+        background-color: #f7fafc; /* Lighter gray */
+      }
+
+      /* Active state for filter links */
+      .filter-link-creative.active {
+        color: white;
+        background-color: #0a2342;
+        font-weight: 600;
+        box-shadow: 0 4px 14px 0 rgba(10, 35, 66, 0.3);
+      }
+
+      /* Product Card Styling */
+      .product-card-creative {
+        background: white;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+        transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease,
+          visibility 0.5s;
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+      }
+
+      .product-card-creative.card-hidden {
+        opacity: 0;
+        transform: scale(0.95);
+        visibility: hidden;
+        /* This makes sure the hidden card doesn't take up space */
+        position: absolute;
+        pointer-events: none;
+      }
+
+      #products-grid {
+        position: relative; /* Needed for absolute positioning of hidden cards */
+      }
+
+      .product-card-creative:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image-wrapper {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-image-wrapper img {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .product-card-creative:hover .product-image-wrapper img {
+        transform: scale(1.1);
+      }
+
+      .add-to-cart-btn {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        background-color: #b78939;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(183, 137, 57, 0.4);
+        white-space: nowrap;
+      }
+
+      .product-card-creative:hover .add-to-cart-btn {
+        transform: translate(-50%, -20px);
+        opacity: 1;
+      }
+    </style>
+
+    <section class="shop-section page-section">
+      <div class="container flex flex-col lg:flex-row gap-12">
+        <aside
+          class="w-full lg:w-1/4 p-8 filter-sidebar-creative h-fit sticky top-[120px] initial-hidden"
+          data-anim="animate-fadeInUp delay-1"
+        >
+          <h3 class="text-3xl font-bold text-[#0a2342] mb-8">Categories</h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="#"
+                class="filter-link-creative active"
+                data-category="all"
+                >All Art</a
+              >
+            </li>
+            <li>
+              <a href="#" class="filter-link-creative" data-category="Paintings"
+                >Paintings</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="filter-link-creative"
+                data-category="Sculptures"
+                >Sculptures</a
+              >
+            </li>
+            <li>
+              <a href="#" class="filter-link-creative" data-category="Pottery"
+                >Pottery</a
+              >
+            </li>
+            <li>
+              <a href="#" class="filter-link-creative" data-category="Jewelry"
+                >Jewelry</a
+              >
+            </li>
+            <li>
+              <a href="#" class="filter-link-creative" data-category="Textiles"
+                >Textiles</a
+              >
+            </li>
+            <li>
+              <a href="#" class="filter-link-creative" data-category="Woodwork"
+                >Woodwork</a
+              >
+            </li>
+          </ul>
+        </aside>
+
+        <div class="w-full lg:w-3/4">
+          <div
+            id="products-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+          >
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-2"
+              data-category="Paintings"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Warli Heritage Painting"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Warli Heritage
+                </h4>
+                <p class="text-gray-500 mb-2">Paintings</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹12,500</p>
+              </div>
+            </div>
+
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-3"
+              data-category="Sculptures"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1518991669382-758c14ce4562?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Dhokra Bronze Statue"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Bronze Dancer
+                </h4>
+                <p class="text-gray-500 mb-2">Sculptures</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹8,200</p>
+              </div>
+            </div>
+
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-2"
+              data-category="Textiles"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1618296014441-d9657c675346?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Bandhani Silk Scarf"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Royal Bandhani Silk
+                </h4>
+                <p class="text-gray-500 mb-2">Textiles</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹5,999</p>
+              </div>
+            </div>
+
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-3"
+              data-category="Pottery"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1551109983-82c2b38a02c3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Terracotta Vase"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Earthen Terracotta
+                </h4>
+                <p class="text-gray-500 mb-2">Pottery</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹3,500</p>
+              </div>
+            </div>
+
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-2"
+              data-category="Woodwork"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1623232041797-354c07a8c886?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Carved Wooden Elephant"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Majestic Elephant
+                </h4>
+                <p class="text-gray-500 mb-2">Woodwork</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹15,000</p>
+              </div>
+            </div>
+
+            <div
+              class="product-card-creative initial-hidden"
+              data-anim="animate-fadeInUp delay-3"
+              data-category="Jewelry"
+            >
+              <div class="product-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1611652022417-a5734a7848c8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600"
+                  alt="Tribal Silver Necklace"
+                  class="w-full h-64 object-cover"
+                />
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="p-6 text-center">
+                <h4 class="text-xl font-bold text-[#0a2342] mb-1">
+                  Silver Moon Necklace
+                </h4>
+                <p class="text-gray-500 mb-2">Jewelry</p>
+                <p class="text-2xl font-semibold text-[#b78939]">₹9,800</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Intersection Observer for scroll animations ---
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        document.querySelectorAll(".initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+
+        // --- Advanced Filtering Logic ---
+        const filterLinks = document.querySelectorAll(".filter-link-creative");
+        const productCards = document.querySelectorAll(
+          ".product-card-creative"
+        );
+
+        filterLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const selectedCategory = this.getAttribute("data-category");
+
+            // Update active state on filter links
+            filterLinks.forEach((link) => link.classList.remove("active"));
+            this.classList.add("active");
+
+            // Filter product cards with animation
+            productCards.forEach((card) => {
+              const cardCategory = card.getAttribute("data-category");
+
+              if (
+                selectedCategory === "all" ||
+                cardCategory === selectedCategory
+              ) {
+                card.classList.remove("card-hidden");
+              } else {
+                card.classList.add("card-hidden");
+              }
+            });
+          });
+        });
+      });
+    </script>
+    <!-- Footer -->
+    <style>
+      /* Main footer wrapper */
+      #page-footer {
+        position: relative;
+        overflow: hidden; /* Important for the background element */
+      }
+
+      /* Keyframes for animations */
+      @keyframes slideUpFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes rotate360 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for animated elements, to be revealed on scroll */
+      .awaiting-animation {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animations */
+      .play-slide-up {
+        animation: slideUpFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays for staggered effect */
+      .stagger-1 {
+        animation-delay: 0.1s;
+      }
+      .stagger-2 {
+        animation-delay: 0.2s;
+      }
+      .stagger-3 {
+        animation-delay: 0.3s;
+      }
+      .stagger-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background element */
+      #footer-background-shape {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: rotate360 120s linear infinite;
+        z-index: 1;
+      }
+
+      #footer-content-wrapper {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .social-link {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .social-link:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+
+    <footer id="page-footer" class="bg-[#0a2342] text-white py-16 md:py-20">
+      <div id="footer-content-wrapper" class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            id="footer-brand-info"
+            class="md:col-span-4 awaiting-animation"
+            data-animation="play-slide-up stagger-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="./assets/logo.png"
+                alt="Tribal Indos Logo"
+                class="h-10 w-10"
+              />
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div id="footer-social-links" class="flex space-x-5 mt-6">
+              <a href="#" class="social-link text-gray-300">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link text-gray-300">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644-.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link text-gray-300">
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div
+            id="footer-quick-links"
+            class="md:col-span-2 awaiting-animation"
+            data-animation="play-slide-up stagger-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="shop.html" class="hover:text-white hover:underline"
+                  >Shop All</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="hover:text-white hover:underline"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Meet the Artists</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Blog & Stories</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            id="footer-newsletter-signup"
+            class="md:col-span-6 awaiting-animation"
+            data-animation="play-slide-up stagger-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form id="newsletter-form" class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+                aria-label="Email for newsletter"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          id="footer-copyright"
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 awaiting-animation"
+          data-animation="play-slide-up stagger-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animationObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Get the animation classes from the data attribute
+                const animationClasses =
+                  entry.target.dataset.animation.split(" ");
+                // Add the classes to the element to trigger the animation
+                entry.target.classList.add(...animationClasses);
+                // Remove the initial state class
+                entry.target.classList.remove("awaiting-animation");
+                // Stop observing the element once animated
+                animationObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        // Observe all elements that are waiting for animation
+        document.querySelectorAll(".awaiting-animation").forEach((element) => {
+          animationObserver.observe(element);
+        });
+      });
+    </script>
+
+    <script>
+      const cartCountElement = document.getElementById("cart-count");
+      const productsGrid = document.getElementById("products-grid");
+      const filterLinks = document.querySelectorAll(".filter-link");
+
+      // Product data as an array of objects
+      let products = [];
+
+      /**
+       * Loads cart data from local storage.
+       * @returns {Array} An array of cart items.
+       */
+      function getCart() {
+        const cartData = localStorage.getItem("cart");
+        return cartData ? JSON.parse(cartData) : [];
+      }
+
+      /**
+       * Saves cart data to local storage.
+       * @param {Array} cart - The cart array to save.
+       */
+      function saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      /**
+       * Updates and displays the cart count.
+       */
+      function updateCartCount() {
+        const cart = getCart();
+        cartCountElement.textContent = cart.length;
+      }
+
+      /**
+       * Adds a product to the cart.
+       * @param {number} id - The ID of the product.
+       * @param {string} name - The name of the product.
+       * @param {number} price - The price of the product.
+       * @param {string} image - The image URL of the product.
+       */
+      function addToCart(id, name, price, image) {
+        const cart = getCart();
+        const existingItem = cart.find((item) => item.id === id);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, image, quantity: 1 });
+        }
+
+        saveCart(cart);
+        updateCartCount();
+      }
+
+      /**
+       * Renders the product cards based on a filter.
+       * @param {string} filter - The category to filter by ('all' or specific category).
+       */
+      function renderProducts(filter = "all") {
+        productsGrid.innerHTML = "";
+
+        // Get products from Local Storage
+        const localProducts = JSON.parse(
+          localStorage.getItem("products") || "[]"
+        );
+
+        const filteredProducts =
+          filter === "all"
+            ? localProducts
+            : localProducts.filter((p) => p.category === filter);
+
+        if (filteredProducts.length === 0) {
+          productsGrid.innerHTML =
+            '<p class="text-center text-xl text-gray-500 col-span-full">No products found in this category.</p>';
+          return;
+        }
+
+        filteredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("product-card");
+          productCard.setAttribute("data-category", product.category);
+          productCard.innerHTML = `
+                    <img class="w-full" src="${product.mainImage}" alt="${
+            product.productName
+          }">
+                    <div class="product-details">
+                        <h3 class="text-2xl font-bold text-[#0a2342] mb-1">${
+                          product.productName
+                        }</h3>
+                        <p class="text-gray-600 mb-3">Artist: ${
+                          product.artistName
+                        }</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-extrabold text-[#b78939]">₹ ${product.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                            <button onclick="addToCart(${product.id}, '${
+            product.productName
+          }', ${product.price}, '${
+            product.mainImage
+          }')" class="bg-[#0a2342] text-white py-2.5 px-6 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+          productsGrid.appendChild(productCard);
+        });
+      }
+
+      // Add a click event listener to each filter link
+      filterLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent default link behavior
+
+          // Remove the 'active' class from all links
+          filterLinks.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Add the 'active' class to the clicked link
+          event.target.classList.add("active");
+
+          // Get the category from the clicked link
+          const selectedCategory = event.target.dataset.category;
+
+          // Render products based on the selected filter
+          renderProducts(selectedCategory);
+        });
+      });
+
+      // Initial render on page load
+      window.onload = () => {
+        renderProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tribal Art & Crafts - Authentic Creations, Empowering Artists</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f9;
+        color: #333333;
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-section {
+        position: relative;
+        min-height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        box-shadow: inset 0 -50px 70px -30px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+      .hero-slide {
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 1.2s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: kenBurns 20s infinite alternate;
+      }
+      .hero-slide:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .hero-slide:nth-child(2) {
+        animation-delay: 6.6s;
+      }
+      .hero-slide:nth-child(3) {
+        animation-delay: 13.2s;
+      }
+      @keyframes kenBurns {
+        0% {
+          transform: scale(1) translateX(0%);
+          background-position: center center;
+        }
+        100% {
+          transform: scale(1.15) translateX(-5%);
+          background-position: top right;
+        }
+      }
+      .hero-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        animation-play-state: running;
+      }
+      .hero-overlay {
+        background-color: rgba(0, 0, 0, 0.65);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .card-hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card-hover-effect:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+      .dual-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f4f4f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #b78939;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a37b31;
+      }
+      .section-heading {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 4rem;
+        font-weight: 800;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      @media (max-width: 768px) {
+        .section-heading {
+          font-size: 2.5rem;
+          margin-bottom: 2.5rem;
+        }
+        .hero-slide .relative {
+          padding: 2rem;
+        }
+        .hero-slide h1 {
+          font-size: 3rem;
+        }
+        .hero-slide p {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Dual-Layer Header -->
+
+    <div class="dual-header">
+      <!-- Top bar -->
+      <header class="bg-white border-b border-gray-100 py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Brand and logo -->
+          <div class="flex items-center space-x-3">
+            <!-- Logo -->
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+
+            <!-- Text -->
+            <span
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0a2342] tracking-tight"
+            >
+              Tribal <span class="text-[#b78939]">Arts</span>
+            </span>
+          </div>
+          <!-- Log in / cart button -->
+          <div class="flex items-center space-x-5">
+            <a
+              href="cart.html"
+              class="relative text-[#0a2342] hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                ></path>
+              </svg>
+              <!-- Cart item count, now dynamic -->
+              <span
+                id="cart-count"
+                class="absolute -top-1 -right-1 bg-[#b78939] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="login.html"
+              class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center"
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation bar -->
+      <header class="bg-[#0a2342] text-white py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Navigation links -->
+          <nav class="flex space-x-8 text-lg font-medium">
+            <a
+              href="index.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Home
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="shop.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Shop
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="artists.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Artists
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="about.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              About
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="contact.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Contact
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+          </nav>
+          <!-- Search bar -->
+          <div class="hidden md:flex items-center relative">
+            <input
+              type="text"
+              placeholder="Search art & artists..."
+              class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner"
+            />
+            <button
+              class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Hero Section -->
+    <style>
+      /* Apply custom fonts if available */
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .font-inter {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Keyframes for the text animations */
+      @keyframes reveal-word {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Styling for the word animations */
+      .animate-word-reveal .word-wrapper {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+      }
+      .animate-word-reveal .animated-word {
+        display: inline-block;
+        transform: translateY(100%);
+        opacity: 0;
+        animation: reveal-word 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          forwards;
+      }
+
+      /* Stagger the word animations */
+      .animate-word-reveal span:nth-of-type(1) .animated-word {
+        animation-delay: 0.1s;
+      }
+      .animate-word-reveal span:nth-of-type(2) .animated-word {
+        animation-delay: 0.2s;
+      }
+      .animate-word-reveal span:nth-of-type(3) .animated-word {
+        animation-delay: 0.35s;
+      }
+      .animate-word-reveal span:nth-of-type(4) .animated-word {
+        animation-delay: 0.45s;
+      }
+
+      .animate-fadeInUp {
+        opacity: 0;
+        animation: fadeInUp 1s ease-out forwards;
+      }
+
+      /* Button hover effect */
+      .creative-button .arrow-icon {
+        transition: transform 0.3s ease;
+      }
+      .creative-button:hover .arrow-icon {
+        transform: translateX(5px);
+      }
+
+      /* --- TRANSITION IMPROVEMENT --- */
+      .home-slide {
+        /* This is the new, smoother transition. It uses a custom cubic-bezier curve for a more professional feel. */
+        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.6s ease;
+        -webkit-box-reflect: below 10px
+          linear-gradient(transparent, transparent, #0004);
+      }
+    </style>
+
+    <div
+      class="home-hero font-inter bg-gradient-to-br from-[#f8f0e5] via-[#ffffff] to-[#fdf8f0] min-h-screen flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 p-6 md:p-12 overflow-hidden"
+    >
+      <div class="text-center md:text-left md:w-">
+        <h1
+          class="animate-word-reveal text-5xl md:text-7xl font-bold font-playfair text-[#0a2342] leading-tight"
+        >
+          <span class="word-wrapper"
+            ><span class="animated-word">Welcome</span></span
+          >
+          <span class="word-wrapper"><span class="animated-word">to</span></span
+          ><br />
+          <span class="word-wrapper"
+            ><span class="animated-word text-[#b78939]">Tribal</span></span
+          >
+          <span class="word-wrapper"
+            ><span class="animated-word text-[#b78939]">Arts...</span></span
+          >
+        </h1>
+
+        <p
+          class="animate-fadeInUp mt-6 text-lg md:text-xl text-gray-700 max-w-lg mx-auto md:mx-0"
+          style="animation-delay: 0.6s"
+        >
+          Discover the rich culture and exquisite craftsmanship of Indian
+          tribes.
+        </p>
+
+        <div class="animate-fadeInUp mt-10" style="animation-delay: 0.8s">
+          <a
+            href="#"
+            class="creative-button inline-flex items-center gap-3 bg-[#b78939] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-[#a37b31] transition-colors duration-300 text-lg transform hover:scale-105"
+          >
+            Explore Our Collection
+            <svg
+              class="arrow-icon w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="home-slider relative w-full md:w-1/2 h-[60vh] md:h-[70vh] flex justify-center items-center"
+        style="perspective: 1400px"
+      >
+        <img
+          src="./assets/1.jpg"
+          class="home-slide absolute w-[70%] md:w-[60%] h-[80%] object-cover rounded-2xl shadow-2xl opacity-0"
+          alt="1"
+        />
+        <img
+          src="./assets/2.jpg"
+          class="home-slide absolute w-[70%] md:w-[60%] h-[80%] object-cover rounded-2xl shadow-2xl opacity-0"
+          alt="2"
+        />
+        <img
+          src="./assets/3.jpg"
+          class="home-slide absolute w-[70%] md:w-[60%] h-[80%] object-cover rounded-2xl shadow-2xl opacity-0"
+          alt="3"
+        />
+        <img
+          src="./assets/4.jpg"
+          class="home-slide absolute w-[70%] md:w-[60%] h-[80%] object-cover rounded-2xl shadow-2xl opacity-0"
+          alt="4"
+        />
+        <img
+          src="./assets/5.jpg"
+          class="home-slide absolute w-[70%] md:w-[60%] h-[80%] object-cover rounded-2xl shadow-2xl opacity-0"
+          alt="5"
+        />
+      </div>
+    </div>
+
+    <script>
+      const setupHeroSlider = () => {
+        const hero = document.querySelector(".home-hero");
+        if (!hero) return;
+
+        const slides = hero.querySelectorAll(".home-slide");
+        if (slides.length === 0) return;
+
+        let index = 0;
+        let intervalId = null;
+
+        function updateSlides() {
+          slides.forEach((slide) => {
+            // Reset styles
+            slide.style.transform = "scale(0.5)";
+            slide.style.zIndex = "0";
+            slide.style.opacity = "0";
+          });
+
+          let left = (index - 1 + slides.length) % slides.length;
+          let right = (index + 1) % slides.length;
+
+          // Apply styles for the visible slides
+          slides[index].style.transform = "translateZ(0) scale(1)";
+          slides[index].style.zIndex = "3";
+          slides[index].style.opacity = "1";
+
+          // FIXED: Changed translateX from 90% to 70% and adjusted translateZ
+          slides[left].style.transform =
+            "translateX(-70%) translateZ(-150px) scale(0.8) rotateY(35deg)";
+          slides[left].style.zIndex = "2";
+          slides[left].style.opacity = "0.8";
+
+          // FIXED: Changed translateX from 90% to 70% and adjusted translateZ
+          slides[right].style.transform =
+            "translateX(70%) translateZ(-150px) scale(0.8) rotateY(-35deg)";
+          slides[right].style.zIndex = "2";
+          slides[right].style.opacity = "0.8";
+        }
+
+        function startSlider() {
+          if (intervalId) clearInterval(intervalId);
+          intervalId = setInterval(() => {
+            index = (index + 1) % slides.length;
+            updateSlides();
+          }, 3000);
+        }
+
+        updateSlides();
+        startSlider();
+      };
+
+      document.addEventListener("DOMContentLoaded", setupHeroSlider);
+    </script>
+
+    <!-- Our Mission/Introduction Section -->
+    <style>
+      .mission-section-v6 {
+        /* A soft, warm gradient replaces the image texture */
+        background: linear-gradient(
+          135deg,
+          #fdf8f0 0%,
+          #ffffff 50%,
+          #f8f0e5 100%
+        );
+      }
+
+      /* Base state for animated elements */
+      .mission-animate {
+        opacity: 0;
+        transition: opacity 0.8s ease-out,
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Specific animation starting positions */
+      .fade-in-from-left {
+        transform: translateX(-30px);
+      }
+      .fade-in-from-right {
+        transform: translateX(30px);
+      }
+      .fade-in-up {
+        transform: translateY(30px);
+      }
+
+      /* State when the element becomes visible */
+      .is-visible .mission-animate {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+
+      /* Stagger the animation delays */
+      .mission-animate.delay-1 {
+        transition-delay: 0.1s;
+      }
+      .mission-animate.delay-2 {
+        transition-delay: 0.3s;
+      }
+      .mission-animate.delay-3 {
+        transition-delay: 0.5s;
+      }
+
+      /* Decorative underline for the heading span */
+      .heading-accent-line {
+        position: relative;
+        display: inline-block;
+      }
+      .heading-accent-line::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #b78939;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: 0.6s; /* Delay to start after text appears */
+      }
+      .is-visible .heading-accent-line::after {
+        transform: scaleX(1);
+      }
+
+      /* Large decorative quote marks using pseudo-elements */
+      .mission-quote {
+        position: relative;
+      }
+      .mission-quote::before {
+        content: "“";
+        position: absolute;
+        top: -0.5em;
+        left: -0.5em;
+        font-family: "Playfair Display", serif;
+        font-size: 6rem;
+        color: #0a2342;
+        opacity: 0.08;
+        line-height: 1;
+        z-index: 1;
+      }
+    </style>
+
+    <section class="mission-section-v6 py-24 md:py-32 overflow-hidden">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <div class="lg:col-span-1 text-center lg:text-left">
+            <h2
+              class="mission-animate fade-in-from-left delay-1 text-5xl md:text-6xl font-bold font-playfair text-[#0a2342] leading-tight"
+            >
+              Our
+              <span class="heading-accent-line text-[#b78939]">Mission</span>
+            </h2>
+          </div>
+
+          <div
+            class="lg:col-span-2 lg:border-l-2 lg:border-[#0a2342]/10 lg:pl-12"
+          >
+            <div class="mission-quote">
+              <p
+                class="mission-animate fade-in-from-right delay-2 text-xl md:text-2xl text-gray-700 leading-relaxed z-10 relative"
+              >
+                We are more than a marketplace; we are a movement dedicated to
+                preserving the rich tapestry of indigenous cultures. We empower
+                talented artists by providing a direct global platform, ensuring
+                their stories are told and their heritage thrives for
+                generations to come.
+              </p>
+            </div>
+            <div class="mt-10 text-center lg:text-left">
+              <a
+                href="about.html"
+                class="mission-animate fade-in-up delay-3 bg-[#0a2342] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-[#333333] hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-lg inline-block"
+              >
+                Discover Our Story
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sectionToAnimate = document.querySelector(".mission-section-v6");
+        if (!sectionToAnimate) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Add 'is-visible' to the parent section to trigger all animations inside
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target); // Animate only once
+              }
+            });
+          },
+          {
+            threshold: 0.25, // Trigger when 25% of the section is visible
+          }
+        );
+
+        observer.observe(sectionToAnimate);
+      });
+    </script>
+    <!-- How It Works Section -->
+
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2
+            class="section-heading text-[#0a2342] initial-hidden"
+            data-anim="animate-fadeInUp"
+          >
+            How It <span class="text-[#b78939]">Works</span>
+          </h2>
+          <p
+            class="text-xl text-gray-600 max-w-2xl mx-auto initial-hidden"
+            data-anim="animate-fadeInUp delay-200"
+          >
+            A simple, transparent journey from discovering art to empowering
+            artisans.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div
+            class="hidden md:block absolute top-1/2 left-0 w-full h-px -translate-y-1/2 mt-[-50px]"
+          >
+            <svg width="100%" height="2" class="overflow-visible">
+              <path
+                d="M0 1 H2000"
+                stroke="#b78939"
+                stroke-width="2"
+                stroke-dasharray="8 8"
+                stroke-linecap="round"
+                class="initial-hidden"
+                data-anim="timeline-path"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="relative grid grid-cols-1 md:grid-cols-3 gap-12 text-center"
+          >
+            <div
+              class="step-card initial-hidden"
+              data-anim="animate-fadeInUp delay-400"
+            >
+              <div
+                class="relative z-10 w-32 h-32 mx-auto mb-6 bg-white border-4 border-[#b78939] rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="initial-hidden"
+                  data-anim="animate-pop-in delay-600"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12 text-[#0a2342]"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="10" cy="10" r="7" />
+                    <line x1="21" y1="21" x2="15" y2="15" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                Discover Unique Art
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed px-4">
+                Browse our curated collection of authentic art pieces crafted by
+                skilled tribal artisans.
+              </p>
+            </div>
+
+            <div
+              class="step-card initial-hidden"
+              data-anim="animate-fadeInUp delay-600"
+            >
+              <div
+                class="relative z-10 w-32 h-32 mx-auto mb-6 bg-white border-4 border-[#b78939] rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="initial-hidden"
+                  data-anim="animate-pop-in delay-800"
+                >
+                  <svg
+                    xmlns="http://www.w.org/2000/svg"
+                    class="h-12 w-12 text-[#0a2342]"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M19.5 13.5l-2.5 2.5a2.5 2.5 0 1 1 -3.5 -3.5l2.5 -2.5a2.5 2.5 0 1 1 3.5 3.5z"
+                    />
+                    <path d="M12 12l-2.5 -2.5a2.5 2.5 0 1 0 -3.5 3.5l2.5 2.5" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                Directly Support Artists
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed px-4">
+                Your purchase directly benefits the artists, ensuring fair wages
+                and sustainable livelihoods.
+              </p>
+            </div>
+
+            <div
+              class="step-card initial-hidden"
+              data-anim="animate-fadeInUp delay-800"
+            >
+              <div
+                class="relative z-10 w-32 h-32 mx-auto mb-6 bg-white border-4 border-[#b78939] rounded-full flex items-center justify-center"
+              >
+                <div
+                  class="initial-hidden"
+                  data-anim="animate-pop-in"
+                  style="animation-delay: 1s"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12 text-[#0a2342]"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <rect x="3" y="8" width="18" height="12" rx="1" />
+                    <path d="M7 8v-2a3 3 0 0 1 6 0v2" />
+                    <path d="M12 12l0 .01" />
+                    <path d="M12 15a2 2 0 0 1 -2 -2" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                Receive a Masterpiece
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed px-4">
+                Own a beautiful piece with a rich story, knowing you’ve made a
+                meaningful impact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Art Section -->
+
+    <style>
+      /* Keyframes for the simple slide-up and fade-in animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Base state for elements that will be animated */
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger the animation */
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Staggered animation delays */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+      .delay-5 {
+        animation-delay: 0.5s;
+      }
+
+      /* --- Creative Card Enhancements --- */
+      .art-card {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .art-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Image Overlay for "Quick View" */
+      .image-container {
+        position: relative;
+        overflow: hidden;
+      }
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 35, 66, 0.7); /* #0a2342 with opacity */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .art-card:hover .image-overlay {
+        opacity: 1;
+      }
+      .art-card .product-image {
+        transition: transform 0.4s ease;
+      }
+      .art-card:hover .product-image {
+        transform: scale(1.05);
+      }
+    </style>
+
+    <section class="py-24 bg-[#f4f4f9]">
+      <div class="container mx-auto px-6">
+        <h2
+          class="section-heading text-center text-[#0a2342] initial-hidden"
+          data-anim="animate-fadeInUp"
+        >
+          Handpicked <span class="text-[#b78939]">Featured Art</span>
+        </h2>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+        >
+          <div
+            class="art-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 initial-hidden"
+            data-anim="animate-fadeInUp delay-1"
+          >
+            <div class="image-container">
+              <img
+                class="product-image w-full h-72 object-cover"
+                src="./assets/6.jpg"
+                alt="Warli Painting"
+              />
+              <div class="image-overlay">
+                <a
+                  href="#"
+                  class="text-white border-2 border-white rounded-full p-3 hover:bg-white hover:text-[#0a2342] transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-2 text-[#0a2342]">
+                Warli Painting: Life's Rhythm
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">Artist: Sunil Kumar</p>
+              <div class="flex items-center justify-between">
+                <p class="text-[#b78939] font-extrabold text-2xl">₹ 1,500</p>
+                <a
+                  href="shop.html"
+                  class="bg-[#0a2342] text-white py-2 px-5 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm"
+                  >Add to Cart</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="art-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 initial-hidden"
+            data-anim="animate-fadeInUp delay-2"
+          >
+            <div class="image-container">
+              <img
+                class="product-image w-full h-72 object-cover"
+                src="./assets/7.jpg"
+                alt="Dhokra Art"
+              />
+              <div class="image-overlay">
+                <a
+                  href="#"
+                  class="text-white border-2 border-white rounded-full p-3 hover:bg-white hover:text-[#0a2342] transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-2 text-[#0a2342]">
+                Dhokra Art: Ancient Wisdom
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">Artist: Reena Devi</p>
+              <div class="flex items-center justify-between">
+                <p class="text-[#b78939] font-extrabold text-2xl">₹ 2,800</p>
+                <a
+                  href="shop.html"
+                  class="bg-[#0a2342] text-white py-2 px-5 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm"
+                  >Add to Cart</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="art-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 initial-hidden"
+            data-anim="animate-fadeInUp delay-3"
+          >
+            <div class="image-container">
+              <img
+                class="product-image w-full h-72 object-cover"
+                src="./assets/8.jpg"
+                alt="Gond Painting"
+              />
+              <div class="image-overlay">
+                <a
+                  href="#"
+                  class="text-white border-2 border-white rounded-full p-3 hover:bg-white hover:text-[#0a2342] transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-2 text-[#0a2342]">
+                Gond Painting: Forest Tales
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">Artist: Ramesh Singh</p>
+              <div class="flex items-center justify-between">
+                <p class="text-[#b78939] font-extrabold text-2xl">₹ 2,000</p>
+                <a
+                  href="shop.html"
+                  class="bg-[#0a2342] text-white py-2 px-5 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm"
+                  >Add to Cart</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="art-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 initial-hidden"
+            data-anim="animate-fadeInUp delay-4"
+          >
+            <div class="image-container">
+              <img
+                class="product-image w-full h-72 object-cover"
+                src="./assets/9.jpg"
+                alt="Pattachitra Art"
+              />
+              <div class="image-overlay">
+                <a
+                  href="#"
+                  class="text-white border-2 border-white rounded-full p-3 hover:bg-white hover:text-[#0a2342] transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-2 text-[#0a2342]">
+                Pattachitra: Sacred Scrolls
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">Artist: Priya Devi</p>
+              <div class="flex items-center justify-between">
+                <p class="text-[#b78939] font-extrabold text-2xl">₹ 3,200</p>
+                <a
+                  href="shop.html"
+                  class="bg-[#0a2342] text-white py-2 px-5 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm"
+                  >Add to Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center mt-16 initial-hidden"
+          data-anim="animate-fadeInUp delay-5"
+        >
+          <a
+            href="shop.html"
+            class="bg-[#b78939] text-white font-bold py-4 px-12 rounded-full shadow-lg hover:bg-[#a37b31] transition-colors duration-300 text-lg uppercase tracking-wide transform hover:scale-105"
+          >
+            View All Art
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Get the animation classes from the data-anim attribute
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        // Observe all elements that need to be animated
+        document.querySelectorAll(".initial-hidden").forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+    <!-- Browsing Section (Categories) -->
+
+    <section class="bg-[#EBEAE1] py-20 md:py-28">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold font-lora text-[#4B2D0B]">
+            Journey Through Artistry
+          </h2>
+          <p class="text-lg text-[#4B2D0B]/80 mt-4 max-w-2xl mx-auto">
+            Discover a world of authentic craftsmanship, categorized for your
+            exploration. Each piece tells a story.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <a
+            href="#"
+            class="category-card group relative block h-80 rounded-lg overflow-hidden shadow-lg"
+            style="--anim-delay: 0.1s"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOZkcOBNqVkeAseLK1d_qunKB61Buy9CR0ug&s"
+              alt="Painting"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#4B2D0B]/90 via-[#4B2D0B]/40 to-transparent"
+            ></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white">
+              <h3
+                class="text-2xl font-bold font-lora transform transition-transform duration-300 ease-in-out group-hover:-translate-y-2"
+              >
+                Painting
+              </h3>
+              <p
+                class="mt-1 text-sm opacity-0 transform transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0"
+              >
+                View Collection →
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="category-card group relative block h-80 rounded-lg overflow-hidden shadow-lg"
+            style="--anim-delay: 0.2s"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfRcfxrnq4ut9pNvQMc4AGcKJCCsjCKR5dxg&s"
+              alt="Pottery"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#4B2D0B]/90 via-[#4B2D0B]/40 to-transparent"
+            ></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white">
+              <h3
+                class="text-2xl font-bold font-lora transform transition-transform duration-300 ease-in-out group-hover:-translate-y-2"
+              >
+                Pottery
+              </h3>
+              <p
+                class="mt-1 text-sm opacity-0 transform transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0"
+              >
+                View Collection →
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="category-card group relative block h-80 rounded-lg overflow-hidden shadow-lg"
+            style="--anim-delay: 0.3s"
+          >
+            <img
+              src="https://images.stockcake.com/public/8/3/5/83543054-ebc1-4cd6-bd47-a30accf19da8_large/intricate-wooden-carving-stockcake.jpg"
+              alt="Woodwork"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#4B2D0B]/90 via-[#4B2D0B]/40 to-transparent"
+            ></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white">
+              <h3
+                class="text-2xl font-bold font-lora transform transition-transform duration-300 ease-in-out group-hover:-translate-y-2"
+              >
+                Woodwork
+              </h3>
+              <p
+                class="mt-1 text-sm opacity-0 transform transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0"
+              >
+                View Collection →
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="category-card group relative block h-80 rounded-lg overflow-hidden shadow-lg"
+            style="--anim-delay: 0.4s"
+          >
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0LU1H5rqDzpRMuTZkCWgRYYYl3XfRNoA-pw&s"
+              alt="Jewelry"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#4B2D0B]/90 via-[#4B2D0B]/40 to-transparent"
+            ></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white">
+              <h3
+                class="text-2xl font-bold font-lora transform transition-transform duration-300 ease-in-out group-hover:-translate-y-2"
+              >
+                Jewelry
+              </h3>
+              <p
+                class="mt-1 text-sm opacity-0 transform transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:translate-y-0"
+              >
+                View Collection →
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Latest Stories/Blog Section -->
+
+    <style>
+      /* Keyframes for the simple fade-in-up animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Initial state for elements that will be animated */
+      .blog-card-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      /* The state when the element becomes visible */
+      .blog-card-animate.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stagger the animation for each card */
+      .blog-card-animate:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .blog-card-animate:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .blog-card-animate:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      /* Enhanced card hover effect */
+      .card-hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card-hover-effect:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Softened shadow for light bg */
+      }
+      .card-hover-effect .card-image {
+        transition: transform 0.4s ease-out;
+      }
+      .card-hover-effect:hover .card-image {
+        transform: scale(1.05);
+      }
+    </style>
+
+    <section class="py-24 bg-[#f8f0e5] text-[#0a2342]">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="section-heading text-[#0a2342]">
+            From Our <span class="text-[#b78939]">Stories & Blog</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Explore the rich narratives and traditions behind the art and the
+            artisans who create it.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div
+            class="blog-card-animate bg-white text-[#333333] rounded-2xl shadow-xl overflow-hidden card-hover-effect flex flex-col"
+          >
+            <div class="overflow-hidden">
+              <img
+                class="w-full h-64 object-cover card-image"
+                src="./assets/10.jpg"
+                alt="Warli Painting"
+              />
+            </div>
+            <div class="p-7 flex-grow flex flex-col">
+              <p class="text-sm font-semibold text-[#b78939] mb-2">FOLK ART</p>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                The Ancient Art of Warli Painting
+              </h3>
+              <p class="text-gray-600 text-base mb-4 flex-grow">
+                Discover the stories behind the geometric patterns and how they
+                depict the rhythm of life.
+              </p>
+              <a
+                href="about.html"
+                class="text-[#b78939] font-bold hover:underline mt-4 inline-flex items-center gap-2"
+              >
+                Read More <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="blog-card-animate bg-white text-[#333333] rounded-2xl shadow-xl overflow-hidden card-hover-effect flex flex-col"
+          >
+            <div class="overflow-hidden">
+              <img
+                class="w-full h-64 object-cover card-image"
+                src="./assets/11.jpg"
+                alt="Dhokra Metalcraft"
+              />
+            </div>
+            <div class="p-7 flex-grow flex flex-col">
+              <p class="text-sm font-semibold text-[#b78939] mb-2">
+                METAL CRAFT
+              </p>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                Dhokra: The Lost-Wax Legacy
+              </h3>
+              <p class="text-gray-600 text-base mb-4 flex-grow">
+                Explore the intricate process of lost-wax casting and meet the
+                artisans keeping this 4000-year-old tradition alive.
+              </p>
+              <a
+                href="about.html"
+                class="text-[#b78939] font-bold hover:underline mt-4 inline-flex items-center gap-2"
+              >
+                Read More <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="blog-card-animate bg-white text-[#333333] rounded-2xl shadow-xl overflow-hidden card-hover-effect flex flex-col"
+          >
+            <div class="overflow-hidden">
+              <img
+                class="w-full h-64 object-cover card-image"
+                src="./assets/12.jpg"
+                alt="Gond Painting"
+              />
+            </div>
+            <div class="p-7 flex-grow flex flex-col">
+              <p class="text-sm font-semibold text-[#b78939] mb-2">
+                TRIBAL ART
+              </p>
+              <h3 class="font-bold text-2xl mb-3 text-[#0a2342]">
+                Gond Art: Stories in Dots & Lines
+              </h3>
+              <p class="text-gray-600 text-base mb-4 flex-grow">
+                A look into the vibrant world of Gond art and how it captures
+                the folk tales and legends of the community.
+              </p>
+              <a
+                href="about.html"
+                class="text-[#b78939] font-bold hover:underline mt-4 inline-flex items-center gap-2"
+              >
+                Read More <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animatedElements =
+          document.querySelectorAll(".blog-card-animate");
+
+        if (!animatedElements.length) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                // Stop observing the element once it's visible to prevent re-animation
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
+
+    <!-- Footer -->
+    <style>
+      .creative-footer {
+        position: relative;
+        overflow: hidden; /* Important for the background SVG */
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for animated elements */
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animations */
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays for staggered effect */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background SVG */
+      .background-accent {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: spin 120s linear infinite;
+        z-index: 1;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+
+    <footer class="creative-footer bg-[#0a2342] text-white py-16 md:py-20">
+      <div class="footer-content container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 initial-hidden"
+            data-anim="animate-fadeInUp delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="./assets/logo.png"
+                alt="Tribal Indos Logo"
+                class="h-10 w-10"
+              />
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644-.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 initial-hidden"
+            data-anim="animate-fadeInUp delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="shop.html" class="hover:text-white hover:underline"
+                  >Shop All</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="hover:text-white hover:underline"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Meet the Artists</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Blog & Stories</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 initial-hidden"
+            data-anim="animate-fadeInUp delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 initial-hidden"
+          data-anim="animate-fadeInUp delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+    <!-- end-->
+    <script>
+      const cartCountElement = document.getElementById("cart-count");
+      const productsGrid = document.getElementById("products-grid");
+      const filterLinks = document.querySelectorAll(".filter-link");
+
+      // Product data as an array of objects
+      let products = [];
+
+      /**
+       * Loads cart data from local storage.
+       * @returns {Array} An array of cart items.
+       */
+      function getCart() {
+        const cartData = localStorage.getItem("cart");
+        return cartData ? JSON.parse(cartData) : [];
+      }
+
+      /**
+       * Saves cart data to local storage.
+       * @param {Array} cart - The cart array to save.
+       */
+      function saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      /**
+       * Updates and displays the cart count.
+       */
+      function updateCartCount() {
+        const cart = getCart();
+        cartCountElement.textContent = cart.length;
+      }
+
+      /**
+       * Adds a product to the cart.
+       * @param {number} id - The ID of the product.
+       * @param {string} name - The name of the product.
+       * @param {number} price - The price of the product.
+       * @param {string} image - The image URL of the product.
+       */
+      function addToCart(id, name, price, image) {
+        const cart = getCart();
+        const existingItem = cart.find((item) => item.id === id);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, image, quantity: 1 });
+        }
+
+        saveCart(cart);
+        updateCartCount();
+      }
+
+      /**
+       * Renders the product cards based on a filter.
+       * @param {string} filter - The category to filter by ('all' or specific category).
+       */
+      function renderProducts(filter = "all") {
+        productsGrid.innerHTML = "";
+
+        // Get products from Local Storage
+        const localProducts = JSON.parse(
+          localStorage.getItem("products") || "[]"
+        );
+
+        const filteredProducts =
+          filter === "all"
+            ? localProducts
+            : localProducts.filter((p) => p.category === filter);
+
+        if (filteredProducts.length === 0) {
+          productsGrid.innerHTML =
+            '<p class="text-center text-xl text-gray-500 col-span-full">No products found in this category.</p>';
+          return;
+        }
+
+        filteredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("product-card");
+          productCard.setAttribute("data-category", product.category);
+          productCard.innerHTML = `
+                    <img class="w-full" src="${product.mainImage}" alt="${
+            product.productName
+          }">
+                    <div class="product-details">
+                        <h3 class="text-2xl font-bold text-[#0a2342] mb-1">${
+                          product.productName
+                        }</h3>
+                        <p class="text-gray-600 mb-3">Artist: ${
+                          product.artistName
+                        }</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-extrabold text-[#b78939]">₹ ${product.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                            <button onclick="addToCart(${product.id}, '${
+            product.productName
+          }', ${product.price}, '${
+            product.mainImage
+          }')" class="bg-[#0a2342] text-white py-2.5 px-6 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+          productsGrid.appendChild(productCard);
+        });
+      }
+
+      // Add a click event listener to each filter link
+      filterLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent default link behavior
+
+          // Remove the 'active' class from all links
+          filterLinks.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Add the 'active' class to the clicked link
+          event.target.classList.add("active");
+
+          // Get the category from the clicked link
+          const selectedCategory = event.target.dataset.category;
+
+          // Render products based on the selected filter
+          renderProducts(selectedCategory);
+        });
+      });
+
+      // Initial render on page load
+      window.onload = () => {
+        renderProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>

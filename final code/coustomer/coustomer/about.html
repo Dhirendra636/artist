@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Tribal Arts</title>
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-bg: #f5f2ec;
+        --secondary-bg: #eae6df;
+        --text-dark: #333333;
+        --text-light: #5a5a5a;
+        --brand-green: #385f54;
+        --brand-brown: #7f644b;
+        --footer-bg: #385f54;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f9;
+        color: #333333;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Dual-Layer Header Styles (Copied from index.html) */
+      .dual-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 60vh;
+        background-image: url("https://images.unsplash.com/photo-1549497931-75890e0c1f6b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwyMHx8cGFpbnRpbmd8ZW58MHx8fHwxNzIxMzQ3MjAxfDA&ixlib=rb-4.0.3&q=80&w=1080");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        position: relative;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin: 0;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+
+      /* About Section */
+      .about-section {
+        padding: 6rem 0;
+        background-color: #f4f4f9;
+        text-align: center;
+      }
+
+      .about-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .about-section p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        color: #5a5a5a;
+      }
+
+      /* Values Grid */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .value-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .value-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        color: #0a2342;
+      }
+
+      .value-card p {
+        font-size: 1rem;
+        color: #5a5a5a;
+      }
+
+      .value-card svg path {
+        fill: #b78939;
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 6rem 0;
+        background-color: #f4f4f9;
+        text-align: center;
+      }
+
+      .team-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+      }
+
+      .team-member {
+        text-align: center;
+      }
+
+      .team-member img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #b78939;
+      }
+
+      .team-member h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        margin: 1rem 0 0.5rem;
+        color: #0a2342;
+      }
+
+      .team-member p {
+        font-size: 0.9rem;
+        color: #5a5a5a;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #0a2342;
+        color: #e0e0e0;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        border-bottom: 1px solid #444;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: #e0e0e0;
+      }
+
+      .footer-about p,
+      .footer-links a,
+      .footer-contact p {
+        font-size: 0.9rem;
+        color: #bbb;
+        text-decoration: none;
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links a:hover {
+        color: #b78939;
+      }
+
+      .footer-newsletter input {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        background-color: #333333;
+        color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-newsletter button {
+        width: 100%;
+        background-color: #b78939;
+        color: #ffffff;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .footer-newsletter button:hover {
+        background-color: #a37b31;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+      }
+
+      .footer-bottom a {
+        color: #888;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .nav-links {
+          justify-content: center;
+          gap: 1rem;
+        }
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .about-section h2,
+        .team-section h2 {
+          font-size: 2rem;
+        }
+        .about-section p {
+          font-size: 1rem;
+        }
+        .values-grid,
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dual-Layer Header -->
+    <div class="dual-header">
+      <!-- Top bar -->
+      <header class="bg-white border-b border-gray-100 py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Brand and logo -->
+          <div class="flex items-center space-x-3">
+            <!-- Logo -->
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+
+            <!-- Text -->
+            <span
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0a2342] tracking-tight"
+            >
+              Tribal <span class="text-[#b78939]">Arts</span>
+            </span>
+          </div>
+          <!-- Log in / cart button -->
+          <div class="flex items-center space-x-5">
+            <a
+              href="cart.html"
+              class="relative text-[#0a2342] hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                ></path>
+              </svg>
+              <!-- Cart item count, now dynamic -->
+              <span
+                id="cart-count"
+                class="absolute -top-1 -right-1 bg-[#b78939] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="login.html"
+              class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center"
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation bar -->
+      <header class="bg-[#0a2342] text-white py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Navigation links -->
+          <nav class="flex space-x-8 text-lg font-medium">
+            <a
+              href="index.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Home
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="shop.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Shop
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="artists.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Artists
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="about.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              About
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="contact.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Contact
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+          </nav>
+          <!-- Search bar -->
+          <div class="hidden md:flex items-center relative">
+            <input
+              type="text"
+              placeholder="Search art & artists..."
+              class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner"
+            />
+            <button
+              class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Hero Section -->
+    <style>
+      .hero-story {
+        background-image: url("./assets/100.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        position: relative;
+        /* A shorter hero is often better for internal pages */
+        height: 70vh;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+      }
+
+      /* Slideshow Container */
+      .hero-slides-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .hero-slide-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        /* Slow zoom effect for each image */
+        transform: scale(1.1);
+        animation: image-fade 12s infinite linear;
+      }
+
+      /* Animation for the cross-fade effect */
+      @keyframes image-fade {
+        0% {
+          opacity: 0;
+          transform: scale(1.1);
+        }
+        15% {
+          opacity: 1;
+        } /* Fade In */
+        40% {
+          opacity: 1;
+          transform: scale(1);
+        } /* Hold and Zoom Out */
+        55% {
+          opacity: 0;
+        } /* Fade Out */
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Stagger the start of each slide's animation */
+      .hero-slide-item:nth-child(1) {
+        /* Replace with your own images */
+        background-image: url("https://images.unsplash.com/photo-1541692597422-c33a2072a2a0?q=80&w=1934&auto=format&fit=crop&sepia=50");
+        animation-delay: 0s;
+      }
+      .hero-slide-item:nth-child(2) {
+        background-image: url("https://images.unsplash.com/photo-1599318113444-6019f5617349?q=80&w=1887&auto=format&fit=crop&sepia=50");
+        animation-delay: 4s;
+      }
+      .hero-slide-item:nth-child(3) {
+        background-image: url("https://images.unsplash.com/photo-1528257850903-8582312a8b94?q=80&w=2070&auto=format&fit=crop&sepia=50");
+        animation-delay: 8s;
+      }
+
+      /* Dark overlay for text readability */
+      .hero-overlay-story {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(43, 25, 6, 0.363); /* Warm, dark brown overlay */
+        z-index: 2;
+      }
+
+      /* Content and simple text animation */
+      .hero-content-story {
+        position: relative;
+        z-index: 3;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeInUp {
+        opacity: 0; /* Hidden by default */
+        animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Scroll-down arrow animation */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        40% {
+          transform: translate(-50%, -15px);
+        }
+        60% {
+          transform: translate(-50%, -10px);
+        }
+      }
+    </style>
+
+    <section class="hero-story">
+      <div class="hero-slides-container">
+        <div class="hero-slide-item"></div>
+        <div class="hero-slide-item"></div>
+        <div class="hero-slide-item"></div>
+      </div>
+      <div class="hero-overlay-story"></div>
+      <div class="hero-content-story">
+        <h1
+          class="animate-fadeInUp text-5xl md:text-7xl font-bold font-playfair"
+        >
+          Our Story
+        </h1>
+        <p
+          class="animate-fadeInUp text-lg md:text-xl mt-4 text-gray-200"
+          style="animation-delay: 0.3s"
+        >
+          Weaving a legacy of art and community.
+        </p>
+      </div>
+      <div class="scroll-indicator">
+        <svg
+          class="w-8 h-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          ></path>
+        </svg>
+      </div>
+    </section>
+    <!-- About Section -->
+    <style>
+      /* Keyframes for animations */
+      @keyframes revealUp {
+        from {
+          transform: translateY(110%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+      @keyframes draw-icon {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* Base state and reveal mask for animations */
+      .reveal-mask {
+        overflow: hidden;
+      }
+      .reveal-content {
+        opacity: 0;
+        transform: translateY(110%);
+        transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+          transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .is-visible .reveal-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Animation Delays */
+      .delay-1 {
+        transition-delay: 0.1s;
+      }
+      .delay-2 {
+        transition-delay: 0.2s;
+      }
+      .delay-3 {
+        transition-delay: 0.3s;
+      }
+      .delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* Parallax container for the image */
+      .parallax-container {
+        overflow: hidden;
+        border-radius: 0.5rem; /* rounded-lg */
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .parallax-image {
+        transition: transform 0.6s ease-out;
+      }
+
+      /* Animated Icon Styling */
+      .animated-icon path {
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+      }
+      .is-visible .animated-icon path {
+        animation: draw-icon 2s ease-out 0.5s forwards;
+      }
+
+      /* Interactive Value Card Styling */
+      .value-card-creative {
+        background-color: white;
+        border: 1px solid #e2e8f0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .value-card-creative:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+      }
+      .value-card-creative:hover .icon-wrapper {
+        transform: scale(1.1); /* "Pop" effect on hover */
+      }
+      .value-card-creative .icon-wrapper {
+        transition: transform 0.3s ease;
+      }
+    </style>
+
+    <section class="about-section bg-white py-20 md:py-28">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal-mask">
+            <div class="parallax-container reveal-content delay-1">
+              <img
+                id="heritage-image"
+                class="parallax-image w-full h-full object-cover"
+                src="./assets/103.jpg"
+              />
+            </div>
+          </div>
+
+          <div class="text-left">
+            <div class="reveal-mask">
+              <h2
+                class="section-heading text-[#0a2342] text-left mb-6 reveal-content delay-2"
+              >
+                Crafted with <span class="text-[#b78939]">Heritage</span>
+              </h2>
+            </div>
+            <div class="reveal-mask">
+              <p
+                class="text-xl text-gray-600 leading-relaxed mb-10 reveal-content delay-3"
+              >
+                For centuries, artisans have created masterpieces that reflect
+                our diverse cultural heritage. Each piece tells the story of our
+                rich traditions, handcrafted with skill passed down through
+                generations.
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              <div
+                class="value-card-creative flex items-start gap-6 p-6 rounded-lg reveal-mask"
+              >
+                <div class="reveal-content delay-4">
+                  <div class="icon-wrapper text-[#b78939] flex-shrink-0">
+                    <svg
+                      class="animated-icon h-10 w-10"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.428 15.428a2.25 2.25 0 00-2.25-2.25h-5.379a2.25 2.25 0 00-2.25 2.25v5.379c0 1.242 1.008 2.25 2.25 2.25h5.379a2.25 2.25 0 002.25-2.25v-5.379z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M14.25 8.25a2.25 2.25 0 00-2.25-2.25h-5.379a2.25 2.25 0 00-2.25 2.25v5.379a2.25 2.25 0 002.25 2.25h5.379a2.25 2.25 0 002.25-2.25v-5.379z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 4.5a2.25 2.25 0 00-2.25-2.25H1.379a2.25 2.25 0 00-2.25 2.25v5.379a2.25 2.25 0 002.25 2.25h5.379a2.25 2.25 0 002.25-2.25V4.5z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-xl mb-1 text-[#0a2342]">
+                      Ethical & Authentic
+                    </h3>
+                    <p class="text-gray-600">
+                      We source authentic materials and ensure fair wages,
+                      maintaining long-term partnerships with artisan
+                      communities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="value-card-creative flex items-start gap-6 p-6 rounded-lg reveal-mask"
+              >
+                <div class="reveal-content delay-5">
+                  <div class="icon-wrapper text-[#b78939] flex-shrink-0">
+                    <svg
+                      class="animated-icon h-10 w-10"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-xl mb-1 text-[#0a2342]">
+                      Empowering Communities
+                    </h3>
+                    <p class="text-gray-600">
+                      Our commitment extends beyond commerce, preserving India's
+                      artistic heritage for future generations.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Observer for reveal animations ---
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(".reveal-mask").forEach((el) => {
+          revealObserver.observe(el);
+        });
+
+        // --- Parallax scroll effect for the image ---
+        const image = document.getElementById("heritage-image");
+        if (image) {
+          window.addEventListener("scroll", () => {
+            // The '0.1' value controls the speed of the parallax effect.
+            // Adjust it to make the effect more or less subtle.
+            const speed = 0.1;
+            const yPos = window.pageYOffset * speed;
+            image.style.transform = `translateY(${yPos}px)`;
+          });
+        }
+      });
+    </script>
+    <!--section 3 -->
+    <style>
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .font-inter {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* --- Animation Setup --- */
+      .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .is-visible {
+        opacity: 1;
+        transform: translateY(0) !important;
+      }
+
+      /* --- Timeline Specific Styles --- */
+      .timeline-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 100%;
+        background-color: #e5e7eb; /* gray-200 */
+      }
+      .timeline-item {
+        position: relative;
+      }
+      .timeline-dot {
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 9999px;
+        background-color: white;
+        border: 3px solid #b78939;
+        z-index: 10;
+        transition: transform 0.5s ease;
+      }
+      .timeline-item.is-visible .timeline-dot {
+        transform: translateX(-50%) scale(1.2);
+      }
+    </style>
+
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="animate-on-scroll" style="transform: translateX(-30px)">
+            <h2
+              class="font-playfair text-4xl md:text-5xl font-bold text-[#0a2342] mb-6"
+            >
+              The Hands that Weave the Story
+            </h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+              Our story is not our own. It belongs to the generations of
+              artisans who have kept their traditions alive. It is written in
+              the patient hands of weavers, the steady gaze of painters, and the
+              rhythmic work of metalsmiths.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed">
+              We began Tribal Arts to honor these creators—to provide a bridge
+              from their remote villages to the heart of your home, ensuring
+              their legacy not only survives, but thrives.
+            </p>
+          </div>
+          <div
+            class="animate-on-scroll"
+            style="transform: translateX(30px); transition-delay: 0.2s"
+          >
+            <img
+              src="./assets/121.webp"
+              alt="Portrait of an artisan"
+              class="rounded-lg shadow-2xl w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2
+            class="font-playfair text-4xl md:text-5xl font-bold text-[#0a2342] animate-on-scroll"
+            style="transform: translateY(30px)"
+          >
+            A Canvas of Tradition
+          </h2>
+          <p
+            class="mt-4 text-lg text-gray-600 animate-on-scroll"
+            style="transform: translateY(30px); transition-delay: 0.1s"
+          >
+            Each art form tells a unique tale, a history of a people and their
+            connection to the land, to spirituality, and to each other.
+          </p>
+        </div>
+
+        <div class="relative timeline-container max-w-3xl mx-auto">
+          <div
+            class="timeline-item md:grid md:grid-cols-2 md:gap-8 mb-12 animate-on-scroll"
+            style="transform: translateY(40px)"
+          >
+            <div class="md:text-right md:pr-8">
+              <img
+                src="./assets/105.webp"
+                alt="Textiles"
+                class="rounded-lg shadow-lg inline-block"
+              />
+            </div>
+            <div class="mt-4 md:mt-0">
+              <div class="timeline-dot"></div>
+              <h3 class="text-2xl font-bold text-[#b78939]">
+                Threads of Heritage
+              </h3>
+              <p class="text-gray-600 mt-2">
+                From the intricate mirror work of Gujarat to the bold patterns
+                of Naga shawls, our textiles are a vibrant language of identity
+                and skill.
+              </p>
+            </div>
+          </div>
+          <div
+            class="timeline-item md:grid md:grid-cols-2 md:gap-8 mb-12 animate-on-scroll"
+            style="transform: translateY(40px)"
+          >
+            <div class="md:col-start-2 md:pl-8">
+              <img
+                src="./assets/106.webp"
+                alt="Pottery"
+                class="rounded-lg shadow-lg inline-block"
+              />
+            </div>
+            <div
+              class="mt-4 md:mt-0 md:col-start-1 md:row-start-1 md:text-right"
+            >
+              <div class="timeline-dot"></div>
+              <h3 class="text-2xl font-bold text-[#b78939]">Earth & Fire</h3>
+              <p class="text-gray-600 mt-2">
+                The pottery traditions of India are as old as civilization
+                itself. Each piece is shaped by hand, telling a story of
+                utility, beauty, and connection to the earth.
+              </p>
+            </div>
+          </div>
+          <div
+            class="timeline-item md:grid md:grid-cols-2 md:gap-8 animate-on-scroll"
+            style="transform: translateY(40px)"
+          >
+            <div class="md:text-right md:pr-8">
+              <img
+                src="./assets/107.jpeg"
+                alt="Metalwork"
+                class="rounded-lg shadow-lg inline-block"
+              />
+            </div>
+            <div class="mt-4 md:mt-0">
+              <div class="timeline-dot"></div>
+              <h3 class="text-2xl font-bold text-[#b78939]">Metal & Magic</h3>
+              <p class="text-gray-600 mt-2">
+                The ancient lost-wax technique of Dhokra metal casting creates
+                stunningly intricate figures, each one entirely unique and
+                imbued with a rustic charm.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2
+          class="font-playfair text-4xl md:text-5xl font-bold text-[#0a2342] animate-on-scroll"
+          style="transform: translateY(30px)"
+        >
+          Bridging Worlds, Building Futures
+        </h2>
+        <p
+          class="mt-4 text-lg max-w-3xl mx-auto text-gray-600 animate-on-scroll"
+          style="transform: translateY(30px); transition-delay: 0.1s"
+        >
+          By connecting artisans to a global audience, we create a sustainable
+          cycle that honors the past, enriches the present, and preserves these
+          traditions for the future.
+        </p>
+        <div
+          class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto"
+        >
+          <div
+            class="animate-on-scroll"
+            style="transform: translateY(30px); transition-delay: 0.2s"
+          >
+            <div class="p-8 bg-gray-50 rounded-lg h-full">
+              <h3 class="text-2xl font-bold text-[#0a2342]">For Artisans</h3>
+              <p class="mt-2 text-gray-600">
+                Fair prices, global reach, and the dignity of being recognized
+                for their mastery.
+              </p>
+            </div>
+          </div>
+          <div
+            class="animate-on-scroll"
+            style="transform: translateY(30px); transition-delay: 0.3s"
+          >
+            <div class="p-8 bg-gray-50 rounded-lg h-full">
+              <h3 class="text-2xl font-bold text-[#0a2342]">For You</h3>
+              <p class="mt-2 text-gray-600">
+                Access to authentic, handcrafted art that carries a story and
+                brings soul to your home.
+              </p>
+            </div>
+          </div>
+          <div
+            class="animate-on-scroll"
+            style="transform: translateY(30px); transition-delay: 0.4s"
+          >
+            <div class="p-8 bg-gray-50 rounded-lg h-full">
+              <h3 class="text-2xl font-bold text-[#0a2342]">For Culture</h3>
+              <p class="mt-2 text-gray-600">
+                A commitment to keeping ancient techniques and narratives alive
+                for generations to come.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+        if (!animatedElements.length) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((element) => {
+          if (!element.style.transform) {
+            element.style.transform = "translateY(30px)";
+          }
+          observer.observe(element);
+        });
+      });
+    </script>
+    <!-- Team Section -->
+    <style>
+      .site-footer-section {
+        position: relative;
+        overflow: hidden; /* Important for the background SVG */
+      }
+
+      /* Keyframes for animations */
+      @keyframes entryFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes continuous-spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for elements to be animated on scroll */
+      .await-animation {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animation */
+      .start-fade-up-animation {
+        animation: entryFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delay utility classes */
+      .animation-delay-1 {
+        animation-delay: 0.1s;
+      }
+      .animation-delay-2 {
+        animation-delay: 0.2s;
+      }
+      .animation-delay-3 {
+        animation-delay: 0.3s;
+      }
+      .animation-delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background decoration */
+      .footer-background-decoration {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: continuous-spin 120s linear infinite;
+        z-index: 1;
+      }
+
+      .footer-content-wrapper {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .footer-social-link {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .footer-social-link:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+
+    <footer
+      id="main-footer"
+      class="site-footer-section bg-[#0a2342] text-white py-16 md:py-20"
+    >
+      <div class="footer-content-wrapper container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 await-animation"
+            data-animation-classes="start-fade-up-animation animation-delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="./assets/logo.png"
+                alt="Tribal Indos Logo"
+                class="h-10 w-10"
+              />
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="footer-social-link text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="footer-social-link text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644-.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="footer-social-link text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 await-animation"
+            data-animation-classes="start-fade-up-animation animation-delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="shop.html" class="hover:text-white hover:underline"
+                  >Shop All</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="hover:text-white hover:underline"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Meet the Artists</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Blog & Stories</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 await-animation"
+            data-animation-classes="start-fade-up-animation animation-delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 await-animation"
+          data-animation-classes="start-fade-up-animation animation-delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const animationObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animationClasses =
+                  entry.target.dataset.animationClasses.split(" ");
+                entry.target.classList.add(...animationClasses);
+                entry.target.classList.remove("await-animation");
+                animationObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".await-animation").forEach((element) => {
+          animationObserver.observe(element);
+        });
+      });
+    </script>
+
+    <!-- Footer -->
+    <script>
+      const cartCountElement = document.getElementById("cart-count");
+      const productsGrid = document.getElementById("products-grid");
+      const filterLinks = document.querySelectorAll(".filter-link");
+
+      // Product data as an array of objects
+      let products = [];
+
+      /**
+       * Loads cart data from local storage.
+       * @returns {Array} An array of cart items.
+       */
+      function getCart() {
+        const cartData = localStorage.getItem("cart");
+        return cartData ? JSON.parse(cartData) : [];
+      }
+
+      /**
+       * Saves cart data to local storage.
+       * @param {Array} cart - The cart array to save.
+       */
+      function saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      /**
+       * Updates and displays the cart count.
+       */
+      function updateCartCount() {
+        const cart = getCart();
+        cartCountElement.textContent = cart.length;
+      }
+
+      /**
+       * Adds a product to the cart.
+       * @param {number} id - The ID of the product.
+       * @param {string} name - The name of the product.
+       * @param {number} price - The price of the product.
+       * @param {string} image - The image URL of the product.
+       */
+      function addToCart(id, name, price, image) {
+        const cart = getCart();
+        const existingItem = cart.find((item) => item.id === id);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, image, quantity: 1 });
+        }
+
+        saveCart(cart);
+        updateCartCount();
+      }
+
+      /**
+       * Renders the product cards based on a filter.
+       * @param {string} filter - The category to filter by ('all' or specific category).
+       */
+      function renderProducts(filter = "all") {
+        productsGrid.innerHTML = "";
+
+        // Get products from Local Storage
+        const localProducts = JSON.parse(
+          localStorage.getItem("products") || "[]"
+        );
+
+        const filteredProducts =
+          filter === "all"
+            ? localProducts
+            : localProducts.filter((p) => p.category === filter);
+
+        if (filteredProducts.length === 0) {
+          productsGrid.innerHTML =
+            '<p class="text-center text-xl text-gray-500 col-span-full">No products found in this category.</p>';
+          return;
+        }
+
+        filteredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("product-card");
+          productCard.setAttribute("data-category", product.category);
+          productCard.innerHTML = `
+                    <img class="w-full" src="${product.mainImage}" alt="${
+            product.productName
+          }">
+                    <div class="product-details">
+                        <h3 class="text-2xl font-bold text-[#0a2342] mb-1">${
+                          product.productName
+                        }</h3>
+                        <p class="text-gray-600 mb-3">Artist: ${
+                          product.artistName
+                        }</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-extrabold text-[#b78939]">₹ ${product.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                            <button onclick="addToCart(${product.id}, '${
+            product.productName
+          }', ${product.price}, '${
+            product.mainImage
+          }')" class="bg-[#0a2342] text-white py-2.5 px-6 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+          productsGrid.appendChild(productCard);
+        });
+      }
+
+      // Add a click event listener to each filter link
+      filterLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent default link behavior
+
+          // Remove the 'active' class from all links
+          filterLinks.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Add the 'active' class to the clicked link
+          event.target.classList.add("active");
+
+          // Get the category from the clicked link
+          const selectedCategory = event.target.dataset.category;
+
+          // Render products based on the selected filter
+          renderProducts(selectedCategory);
+        });
+      });
+
+      // Initial render on page load
+      window.onload = () => {
+        renderProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>

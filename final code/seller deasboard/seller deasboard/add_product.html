@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Seller Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .image-upload-area { border: 2px dashed #d1d5db; border-radius: .5rem; padding: 2rem; text-align: center; cursor: pointer; transition: 0.3s; }
+        .image-upload-area.hover { border-color: #b78939; background: #fff; }
+        .image-preview-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .image-preview-item { position: relative; width: 96px; height: 96px; border-radius: 0.5rem; overflow: hidden; border: 1px solid #d1d5db; }
+        .image-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+        .remove-image-btn { position: absolute; top: 4px; right: 4px; background: rgba(255,255,255,0.8); border-radius: 50%; width: 24px; height: 24px; cursor: pointer; text-align: center; line-height: 20px; font-weight: bold; }
+        .main-badge { position: absolute; bottom: 4px; left: 4px; background: #b78939; color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+         
+
+        body{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body class="bg-gray-300">
+<!-- Dual-Layer Header (Seller Specific) -->
+    <div class="dual-header">
+        <!-- Top Bar -->
+        <header class="bg-white border-b border-gray-100 py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Brand and Logo -->
+                <div class="flex items-center space-x-3">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                        <path d="M12 2L2 21h20L12 2zM12 5.86L6.5 16h11L12 5.86z"/>
+                    </svg>
+                    <span class="text-2xl md:text-3xl font-extrabold text-[#0a2342] tracking-tight">Tribal <span class="text-[#b78939]">Arts</span></span>
+                </div>
+                <!-- Seller-specific Account Button -->
+                <div class="flex items-center space-x-5">
+                    <a href="seller_my_account.html" class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center">
+                        My Account
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Bar (Seller specific) -->
+        <header class="bg-[#0a2342] text-white py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Navigation Links -->
+                <nav class="flex space-x-8 text-lg font-medium">
+                    <a href="seller_dashboard.html" class="hover:text-[#b78939] transition-colors duration-300 relative group active-link">
+                        Dashboard
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="add_product.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Add Product
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="my_products.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        My Products
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="seller_orders.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Orders
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                </nav>
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center relative">
+                    <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner">
+                    <button class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+    <!-- 🔹 Form Section -->
+    <section class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
+        <h2 class="text-2xl font-bold text-[#0a2342] text-center mb-6">Add New Product</h2>
+        <form id="add-product-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="font-semibold">Product Name</label>
+                    <input id="product-name" type="text" class="w-full p-3 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="font-semibold">Artist Name</label>
+                    <input id="artist-name" type="text" class="w-full p-3 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="font-semibold">Price (₹)</label>
+                    <input id="price" type="number" class="w-full p-3 border rounded-lg" required>
+                </div>
+                <div>
+                    <label class="font-semibold">Category</label>
+                    <select id="category" class="w-full p-3 border rounded-lg" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Paintings">Paintings</option>
+                        <option value="Sculptures">Sculptures</option>
+                        <option value="Pottery">Pottery</option>
+                        <option value="Jewelry">Jewelry</option>
+                        <option value="Textiles">Textiles</option>
+                        <option value="Woodwork">Woodwork</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 🔹 Image Upload -->
+            <div>
+                <label class="font-semibold">Upload Images</label>
+                <div id="upload-area" class="image-upload-area">
+                    <input type="file" id="file-input" accept="image/*" multiple class="hidden">
+                    <p class="text-gray-500">Click or Drag & Drop</p>
+                </div>
+                <div id="preview-container" class="image-preview-container"></div>
+            </div>
+
+            <div>
+                <label class="font-semibold">Description</label>
+                <textarea id="description" rows="4" class="w-full p-3 border rounded-lg" required></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-[#0a2342] text-white py-3 rounded-lg hover:bg-[#333] font-semibold">Submit</button>
+        </form>
+    </section>
+
+    <!-- 🔹 Local Storage Logic -->
+    <script>
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('file-input');
+        const previewContainer = document.getElementById('preview-container');
+        const form = document.getElementById('add-product-form');
+
+        let selectedFiles = [];
+
+        // File handling
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('drop', (e) => { e.preventDefault(); handleFiles(e.dataTransfer.files); });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+        function handleFiles(files) {
+            [...files].forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const div = document.createElement('div');
+                    div.classList.add('image-preview-item');
+                    div.innerHTML = `<img src="${e.target.result}"><button class="remove-image-btn">&times;</button>`;
+                    div.querySelector('.remove-image-btn').addEventListener('click', () => {
+                        selectedFiles = selectedFiles.filter(f => f !== file);
+                        div.remove();
+                    });
+                    previewContainer.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+                selectedFiles.push(file);
+            });
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Create an object with product details
+            const productData = {
+                productName: document.getElementById('product-name').value,
+                artistName: document.getElementById('artist-name').value,
+                price: parseFloat(document.getElementById('price').value),
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                mainImage: "",
+                galleryImages: [],
+            };
+
+            // Convert images to data URLs and store them
+            if (selectedFiles.length > 0) {
+                const mainImageReader = new FileReader();
+                mainImageReader.onload = () => {
+                    productData.mainImage = mainImageReader.result;
+                    
+                    const galleryReaders = selectedFiles.slice(1).map(f => {
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            productData.galleryImages.push(reader.result);
+                            if (productData.galleryImages.length === selectedFiles.length - 1) {
+                                saveAndRedirect(productData);
+                            }
+                        };
+                        reader.readAsDataURL(f);
+                        return reader;
+                    });
+
+                    if (selectedFiles.length === 1) {
+                         saveAndRedirect(productData);
+                    }
+                };
+                mainImageReader.readAsDataURL(selectedFiles[0]);
+            } else {
+                 saveAndRedirect(productData);
+            }
+        });
+
+        function saveAndRedirect(data) {
+            let products = JSON.parse(localStorage.getItem('products') || '[]');
+            products.push(data);
+            localStorage.setItem('products', JSON.stringify(products));
+            
+            // Redirect to my_product.html
+            window.location.href = 'my_products.html';
+        }
+
+    </script>
+    
+</body>
+</html>
+<html>
+    <body>
+ <!-- Footer HTML -->
+    <footer class="creative-footer bg-[#0a2342] text-white py-16 md:py-20">
+      <div class="footer-content container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 initial-hidden"
+            data-anim="animate-fadeInUp delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                 
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 initial-hidden"
+            data-anim="animate-fadeInUp delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="seller_dashboard.html" class="hover:text-white hover:underline"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a href="add_product.html" class="hover:text-white hover:underline"
+                  >Add Products</a
+                >
+              </li>
+              <li>
+                <a href="my_products.html" class="hover:text-white hover:underline"
+                  >   My Products   </a
+                >
+              </li>
+              <li>
+                <a href="seller_my_account.html" class="hover:text-white hover:underline"
+                  >Profile </a
+                >
+              </li>
+              <li>
+                <a href="seller_orders.html" class="hover:text-white hover:underline"
+                  >Order    </a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 initial-hidden"
+            data-anim="animate-fadeInUp delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 initial-hidden"
+          data-anim="animate-fadeInUp delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for the Footer Animations -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

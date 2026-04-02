@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products - Seller Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-300">
+
+<!-- Dual-Layer Header (Seller Specific) -->
+    <div class="dual-header">
+        <!-- Top Bar -->
+        <header class="bg-white border-b border-gray-100 py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Brand and Logo -->
+                <div class="flex items-center space-x-3">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                        <path d="M12 2L2 21h20L12 2zM12 5.86L6.5 16h11L12 5.86z"/>
+                    </svg>
+                    <span class="text-2xl md:text-3xl font-extrabold text-[#0a2342] tracking-tight">Tribal <span class="text-[#b78939]">Arts</span></span>
+                </div>
+                <!-- Seller-specific Account Button -->
+                <div class="flex items-center space-x-5">
+                    <a href="seller_my_account.html" class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center">
+                        My Account
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Bar (Seller specific) -->
+        <header class="bg-[#0a2342] text-white py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Navigation Links -->
+                <nav class="flex space-x-8 text-lg font-medium">
+                    <a href="seller_dashboard.html" class="hover:text-[#b78939] transition-colors duration-300 relative group active-link">
+                        Dashboard
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="add_product.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Add Product
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="my_products.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        My Products
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="seller_orders.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Orders
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                </nav>
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center relative">
+                    <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner">
+                    <button class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- 🔹 Products Section -->
+    <section class="max-w-7xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
+        <h2 class="text-2xl font-bold text-[#0a2342] mb-6">My Products</h2>
+        
+        <!-- 🔹 Category Filter -->
+        <div class="mb-6">
+            <label for="category-filter" class="block text-sm font-semibold text-gray-700">Filter by Category</label>
+            <select id="category-filter" class="mt-1 block w-full md:w-1/4 p-2 border rounded-md shadow-sm focus:border-[#b78939] focus:ring focus:ring-[#b78939] focus:ring-opacity-50">
+                <option value="all">All Categories</option>
+                <option value="Paintings">Paintings</option>
+                <option value="Sculptures">Sculptures</option>
+                <option value="Pottery">Pottery</option>
+                <option value="Jewelry">Jewelry</option>
+                <option value="Textiles">Textiles</option>
+                <option value="Woodwork">Woodwork</option>
+            </select>
+        </div>
+
+        <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- 🔹 Local Storage Logic -->
+    <script>
+        const productsList = document.getElementById('products-list');
+        const categoryFilter = document.getElementById('category-filter');
+
+        // Products ko Local Storage se load aur display karta hai
+        function loadProducts() {
+            // Local Storage se products lene ka code
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+
+            productsList.innerHTML = ""; // Purane products ko saaf karein
+
+            // Agar koi products nahi hain
+            if (products.length === 0) {
+                productsList.innerHTML = `<p class="text-gray-500 col-span-full text-center">No products found. Add some from <a href="add_product_page.html" class="text-[#b78939] font-semibold">Add Product</a>.</p>`;
+                return;
+            }
+
+            // Category ke hisaab se products ko filter karein
+            const selectedCategory = categoryFilter.value;
+            const filteredProducts = products.filter(product => {
+                if (selectedCategory === 'all') {
+                    return true;
+                }
+                return product.category === selectedCategory;
+            });
+
+            // Agar filtered products nahi hain
+            if (filteredProducts.length === 0) {
+                productsList.innerHTML = `<p class="text-gray-500 col-span-full text-center">No products found in this category.</p>`;
+                return;
+            }
+
+            // Har product ke liye card banayein
+            filteredProducts.forEach((product, index) => {
+                const div = document.createElement("div");
+                div.className = "bg-gray-50 border rounded-lg p-4 shadow-sm hover:shadow-lg transition";
+                div.innerHTML = `
+                    <img src="${product.mainImage || 'https://placehold.co/400x300?text=No+Image'}" class="w-full h-40 object-cover rounded-md mb-3">
+                    <h3 class="text-lg font-bold">${product.productName}</h3>
+                    <p class="text-sm text-gray-600">${product.category}</p>
+                    <p class="text-sm text-gray-600">By ${product.artistName}</p>
+                    <p class="text-[#0a2342] font-semibold mt-2">&#8377;${product.price}</p>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">${product.description}</p>
+                    <div class="mt-4 flex space-x-2">
+                        <button onclick="editProduct(${index})" class="flex-1 bg-blue-500 text-white text-sm py-2 rounded-md hover:bg-blue-600 transition">Edit</button>
+                        <button onclick="deleteProduct(${index})" class="flex-1 bg-red-500 text-white text-sm py-2 rounded-md hover:bg-red-600 transition">Delete</button>
+                    </div>
+                `;
+                productsList.appendChild(div);
+            });
+        }
+        
+        // Delete functionality
+        window.deleteProduct = function(index) {
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            products.splice(index, 1);
+            localStorage.setItem('products', JSON.stringify(products));
+            loadProducts(); // Update the UI
+        };
+
+        // Edit functionality
+        window.editProduct = function(index) {
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            const productToEdit = products[index];
+            
+            // Edit karne wale product ko Local Storage mein save karein
+            localStorage.setItem('productToEdit', JSON.stringify(productToEdit));
+            
+            // Add product page par redirect karein
+            window.location.href = 'add_product_page.html?edit=' + index;
+        };
+
+        // Category filter par event listener
+        categoryFilter.addEventListener('change', loadProducts);
+
+        // Page load hone par products ko load karein
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Footer</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for custom typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS for the Footer -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .tf-font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .tf-creative-footer {
+        position: relative;
+        overflow: hidden; /* Important for the background SVG */
+      }
+
+      /* Keyframes for animations with new prefixed names */
+      @keyframes tf-fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes tf-spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for animated elements */
+      .tf-initial-hidden {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animations */
+      .tf-animate-fadeInUp {
+        animation: tf-fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays for staggered effect */
+      .tf-delay-1 {
+        animation-delay: 0.1s;
+      }
+      .tf-delay-2 {
+        animation-delay: 0.2s;
+      }
+      .tf-delay-3 {
+        animation-delay: 0.3s;
+      }
+      .tf-delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background SVG */
+      .tf-background-accent {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: tf-spin 120s linear infinite;
+        z-index: 1;
+      }
+
+      .tf-footer-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .tf-social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .tf-social-icon:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Footer HTML with updated classes -->
+    <footer class="tf-creative-footer bg-[#0a2342] text-white py-16 md:py-20">
+      <div class="tf-footer-content container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 tf-initial-hidden"
+            data-anim="tf-animate-fadeInUp tf-delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+                          <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+
+              
+              <span class="text-2xl font-bold tf-font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="tf-social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="tf-social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="tf-social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 tf-initial-hidden"
+            data-anim="tf-animate-fadeInUp tf-delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="shop.html" class="hover:text-white hover:underline"
+                  >Shop All</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="hover:text-white hover:underline"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Meet the Artists</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Blog & Stories</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 tf-initial-hidden"
+            data-anim="tf-animate-fadeInUp tf-delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 tf-initial-hidden"
+          data-anim="tf-animate-fadeInUp tf-delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for the Footer Animations (updated selector) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("tf-initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".tf-initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
+

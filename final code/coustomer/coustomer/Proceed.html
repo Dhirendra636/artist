@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - Tribal Arts</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base styling */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f9;
+        color: #333333;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Dual-layer header style */
+      .dual-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Hero section for the page header with a title */
+      .hero {
+        height: 40vh;
+        background-image: url("https://source.unsplash.com/random/1920x1080/?tribal-payment,checkout-process");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        position: relative;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+      }
+
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin: 0;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+
+      /* General section styling for spacing */
+      .page-section {
+        padding: 6rem 0;
+        background-color: #f4f4f9;
+      }
+
+      /* Footer styles */
+      .footer {
+        background-color: #0a2342;
+        color: #e0e0e0;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        border-bottom: 1px solid #444;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: #e0e0e0;
+      }
+
+      .footer-about p,
+      .footer-links a,
+      .footer-contact p {
+        font-size: 0.9rem;
+        color: #bbb;
+        text-decoration: none;
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links a:hover {
+        color: #b78939;
+      }
+
+      .footer-newsletter input {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        background-color: #333333;
+        color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-newsletter button {
+        width: 100%;
+        background-color: #b78939;
+        color: #ffffff;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .footer-newsletter button:hover {
+        background-color: #a37b31;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #888;
+      }
+
+      .footer-bottom a {
+        color: #888;
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .nav-links {
+          justify-content: center;
+          gap: 1rem;
+        }
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+        .page-section h2 {
+          font-size: 2rem;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dual-layer header -->
+    <div class="dual-header">
+      <!-- Top bar -->
+      <header class="bg-white border-b border-gray-100 py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Brand and logo -->
+          <div class="flex items-center space-x-3">
+            <!-- Logo -->
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+
+            <!-- Text -->
+            <span
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0a2342] tracking-tight"
+            >
+              Tribal <span class="text-[#b78939]">Arts</span>
+            </span>
+          </div>
+          <!-- Log in / cart button -->
+          <div class="flex items-center space-x-5">
+            <a
+              href="cart.html"
+              class="relative text-[#0a2342] hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                ></path>
+              </svg>
+              <!-- Cart item count, now dynamic -->
+              <span
+                id="cart-count"
+                class="absolute -top-1 -right-1 bg-[#b78939] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="login.html"
+              class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center"
+            >
+              Log In
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation bar -->
+      <header class="bg-[#0a2342] text-white py-3">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <!-- Navigation links -->
+          <nav class="flex space-x-8 text-lg font-medium">
+            <a
+              href="index.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Home
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="shop.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Shop
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="artists.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Artists
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="about.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              About
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="contact.html"
+              class="hover:text-[#b78939] transition-colors duration-300 relative group"
+            >
+              Contact
+              <span
+                class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+              ></span>
+            </a>
+          </nav>
+          <!-- Search bar -->
+          <div class="hidden md:flex items-center relative">
+            <input
+              type="text"
+              placeholder="Search art & artists..."
+              class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner"
+            />
+            <button
+              class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Hero section -->
+    <style>
+      .checkout-hero {
+        /* A clean gradient is more professional for a checkout page than an image */
+        background: linear-gradient(45deg, #f4f4f9 0%, #eef2f5 100%);
+        height: 50vh; /* Shorter hero for a utility page */
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes lock-animation {
+        0% {
+          transform: translateY(5px) rotate(0);
+        }
+        50% {
+          transform: translateY(-2px) rotate(-10deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0);
+        }
+      }
+      @keyframes morph-to-check {
+        0% {
+          d: path("M8 11V7a4 4 0 118 0v4M5 9h14l1 12H4L5 9z");
+        }
+        100% {
+          d: path("M5 13l4 4L19 7");
+        }
+      }
+      @keyframes draw-check {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* Animation Classes */
+      .animate-fadeInUp {
+        opacity: 0;
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* SVG Icon Animation Styling */
+      .secure-icon .lock-top {
+        transform-origin: 7px 7px;
+        animation: lock-animation 0.8s ease-out 0.5s forwards;
+      }
+      .secure-icon .lock-body-to-check {
+        /* This path will morph into the checkmark */
+        animation: morph-to-check 0.5s ease-in-out 1.5s forwards;
+      }
+      .secure-icon .checkmark {
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        opacity: 0;
+        /* The final checkmark draws itself after the morph */
+        animation: draw-check 0.8s ease-out 2s forwards;
+        animation-fill-mode: forwards; /* This makes the checkmark stay visible */
+        animation-play-state: running; /* Explicitly set play state */
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-timing-function: ease-out;
+        animation-name: draw-check;
+      }
+      .is-visible .secure-icon .checkmark {
+        opacity: 1;
+      }
+    </style>
+
+    <section class="checkout-hero">
+      <div class="hero-content text-center">
+        <div class="mb-4">
+          <svg
+            class="secure-icon w-20 h-20 mx-auto"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="lock-body-to-check"
+              d="M8 11V7a4 4 0 118 0v4M5 9h14l1 12H4L5 9z"
+              stroke="#0a2342"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="lock-top"
+              d="M8 11V7a4 4 0 118 0v4"
+              stroke="#0a2342"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="checkmark"
+              d="M5 13l4 4L19 7"
+              stroke="#b78939"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <h1
+          class="animate-fadeInUp text-5xl md:text-7xl font-extrabold tracking-tight text-[#0a2342]"
+          style="animation-delay: 0.2s"
+        >
+          Secure Checkout
+        </h1>
+        <p
+          class="animate-fadeInUp text-lg text-gray-600 mt-2"
+          style="animation-delay: 0.5s"
+        >
+          You're just a few steps away from owning a masterpiece.
+        </p>
+      </div>
+    </section>
+
+    <!-- Checkout section -->
+    <style>
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.02);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Animation utility classes */
+      .fade-in-up {
+        animation: fadeInUp 0.7s ease-out forwards;
+      }
+
+      /* General Section Styling */
+      .page-section {
+        background-color: #f4f4f9;
+        padding: 6rem 0;
+      }
+
+      /* Form and Summary Card Styling */
+      .checkout-card {
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Input Field with Floating Label */
+      .input-group {
+        position: relative;
+        margin-bottom: 1.5rem; /* Space between input groups */
+      }
+
+      .input-field {
+        width: 100%;
+        border: 1px solid #e2e8f0;
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 1rem 1rem 0.5rem 1rem; /* Adjust padding for floating label */
+        font-size: 1rem;
+        color: #333;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .input-field:focus {
+        outline: none;
+        border-color: #b78939;
+        box-shadow: 0 0 0 3px rgba(183, 137, 57, 0.2); /* Focus ring */
+      }
+
+      .input-label {
+        position: absolute;
+        left: 1rem;
+        top: 0.75rem; /* Initial position for label */
+        color: #6b7280;
+        pointer-events: none;
+        transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+      /* Move label up when input is focused or has content */
+      .input-field:focus + .input-label,
+      .input-field:not(:placeholder-shown) + .input-label {
+        top: -0.5rem; /* Move above input */
+        left: 0.75rem;
+        font-size: 0.75rem; /* Smaller font size */
+        color: #b78939;
+        background-color: white; /* Background to cover border */
+        padding: 0 0.25rem;
+      }
+
+      /* Payment Icons */
+      .payment-icons img {
+        height: 2rem;
+        transition: transform 0.2s ease;
+      }
+      .payment-icons img:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Place Order Button */
+      .place-order-button {
+        width: 100%;
+        background: linear-gradient(45deg, #0a2342, #1e3a5f);
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 9999px; /* Fully rounded */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .place-order-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(10, 35, 66, 0.3);
+      }
+
+      /* Order Summary Item */
+      .order-summary-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: transform 0.3s ease;
+      }
+      .order-summary-item:hover {
+        transform: translateX(5px);
+      }
+    </style>
+
+    <section class="page-section">
+      <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-10">
+        <div class="w-full lg:w-2/3 checkout-card p-8 fade-in-up">
+          <h2 class="text-3xl font-bold text-[#0a2342] mb-8">
+            Shipping & Payment
+          </h2>
+          <form id="checkout-form" class="space-y-8">
+            <div>
+              <h3
+                class="text-xl font-semibold mb-4 text-[#b78939] flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                Contact Information
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="input-group">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="email" class="input-label">Email Address</label>
+                </div>
+                <div class="input-group">
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="phone" class="input-label">Phone Number</label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3
+                class="text-xl font-semibold mb-4 text-[#b78939] flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                Shipping Address
+              </h3>
+              <div class="grid grid-cols-1 gap-6">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="fullName"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="fullName" class="input-label">Full Name</label>
+                </div>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="address1"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="address1" class="input-label"
+                    >Address Line 1</label
+                  >
+                </div>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="address2"
+                    placeholder=" "
+                    class="input-field"
+                  />
+                  <label for="address2" class="input-label"
+                    >Address Line 2 (Optional)</label
+                  >
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      id="city"
+                      placeholder=" "
+                      required
+                      class="input-field"
+                    />
+                    <label for="city" class="input-label">City</label>
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      id="state"
+                      placeholder=" "
+                      required
+                      class="input-field"
+                    />
+                    <label for="state" class="input-label"
+                      >State/Province</label
+                    >
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      id="postalCode"
+                      placeholder=" "
+                      required
+                      class="input-field"
+                    />
+                    <label for="postalCode" class="input-label"
+                      >Postal Code</label
+                    >
+                  </div>
+                </div>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="country"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="country" class="input-label">Country</label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3
+                class="text-xl font-semibold mb-4 text-[#b78939] flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  />
+                </svg>
+                Payment Information
+              </h3>
+              <div class="mb-4 flex gap-3 payment-icons">
+                <img
+                  src="https://www.svgrepo.com/show/362002/visa.svg"
+                  alt="Visa"
+                  title="Visa"
+                  class="h-8"
+                />
+                <img
+                  src="https://www.svgrepo.com/show/361957/mastercard.svg"
+                  alt="Mastercard"
+                  title="Mastercard"
+                  class="h-8"
+                />
+                <img
+                  src="https://www.svgrepo.com/show/361996/amex.svg"
+                  alt="American Express"
+                  title="American Express"
+                  class="h-8"
+                />
+                <img
+                  src="https://www.svgrepo.com/show/361962/paypal.svg"
+                  alt="PayPal"
+                  title="PayPal"
+                  class="h-8"
+                />
+              </div>
+              <div class="grid grid-cols-1 gap-6">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="cardNumber"
+                    placeholder=" "
+                    required
+                    class="input-field"
+                  />
+                  <label for="cardNumber" class="input-label"
+                    >Card Number</label
+                  >
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      id="expiry"
+                      placeholder=" "
+                      required
+                      class="input-field"
+                    />
+                    <label for="expiry" class="input-label">MM/YY</label>
+                  </div>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      id="cvv"
+                      placeholder=" "
+                      required
+                      class="input-field"
+                    />
+                    <label for="cvv" class="input-label">CVV</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="place-order-button">
+              Place Order
+            </button>
+          </form>
+        </div>
+
+        <div
+          class="w-full lg:w-1/3 checkout-card p-8 h-fit lg:sticky top-8 fade-in-up"
+          style="animation-delay: 0.2s"
+        >
+          <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Order Summary</h2>
+          <div
+            id="order-summary-items"
+            class="space-y-4 border-b pb-6 mb-6"
+          ></div>
+
+          <div class="mt-8">
+            <div class="flex justify-between items-center text-lg mb-3">
+              <p class="text-gray-600">Subtotal:</p>
+              <p class="font-semibold text-[#333333]" id="subtotal">₹ 0.00</p>
+            </div>
+            <div class="flex justify-between items-center text-lg mb-3">
+              <p class="text-gray-600">Shipping:</p>
+              <p class="font-semibold text-[#333333]" id="shipping">₹ 500.00</p>
+            </div>
+            <div class="flex justify-between items-center text-lg mb-3">
+              <p class="text-gray-600">Tax (18%):</p>
+              <p class="font-semibold text-[#333333]" id="tax">₹ 0.00</p>
+            </div>
+            <div
+              class="flex justify-between items-center text-2xl font-bold border-t border-gray-200 pt-4 mt-4"
+            >
+              <p class="text-[#0a2342]">Total:</p>
+              <p class="text-[#b78939]" id="total">₹ 0.00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- MOCK CART DATA (replace with actual data from your cart) ---
+        const mockCartItems = [
+          {
+            id: 1,
+            name: "Warli Painting",
+            price: 1500,
+            quantity: 1,
+            imageUrl:
+              "https://source.unsplash.com/random/50x50/?warli-painting,indian",
+          },
+          {
+            id: 2,
+            name: "Dhokra Art Sculpture",
+            price: 2800,
+            quantity: 1,
+            imageUrl:
+              "https://source.unsplash.com/random/50x50/?dhokra-art,metalcraft",
+          },
+          {
+            id: 3,
+            name: "Pattachitra Scroll",
+            price: 3200,
+            quantity: 2,
+            imageUrl:
+              "https://source.unsplash.com/random/50x50/?pattachitra,scroll",
+          },
+        ];
+
+        const orderSummaryItemsEl = document.getElementById(
+          "order-summary-items"
+        );
+        const subtotalEl = document.getElementById("subtotal");
+        const shippingEl = document.getElementById("shipping");
+        const taxEl = document.getElementById("tax");
+        const totalEl = document.getElementById("total");
+
+        const SHIPPING_COST = 500; // Fixed shipping cost
+        const TAX_RATE = 0.18; // 18% tax
+
+        function renderOrderSummary() {
+          orderSummaryItemsEl.innerHTML = "";
+          let currentSubtotal = 0;
+
+          if (mockCartItems.length === 0) {
+            orderSummaryItemsEl.innerHTML =
+              '<p class="text-gray-500 italic">No items in your cart.</p>';
+          } else {
+            mockCartItems.forEach((item) => {
+              const itemTotal = item.price * item.quantity;
+              currentSubtotal += itemTotal;
+
+              const itemEl = document.createElement("div");
+              itemEl.className = "order-summary-item";
+              itemEl.innerHTML = `
+          <img src="${item.imageUrl}" alt="${
+                item.name
+              }" class="w-16 h-16 object-cover rounded-md flex-shrink-0">
+          <div class="flex-grow">
+            <p class="font-medium text-[#0a2342]">${item.name}</p>
+            <p class="text-sm text-gray-500">Qty: ${
+              item.quantity
+            } x ₹ ${item.price.toFixed(2)}</p>
+          </div>
+          <p class="font-semibold text-[#333333]">₹ ${itemTotal.toFixed(2)}</p>
+        `;
+              orderSummaryItemsEl.appendChild(itemEl);
+            });
+          }
+
+          const calculatedTax = currentSubtotal * TAX_RATE;
+          const finalTotal = currentSubtotal + SHIPPING_COST + calculatedTax;
+
+          subtotalEl.textContent = `₹ ${currentSubtotal.toFixed(2)}`;
+          shippingEl.textContent = `₹ ${SHIPPING_COST.toFixed(2)}`;
+          taxEl.textContent = `₹ ${calculatedTax.toFixed(2)}`;
+          totalEl.textContent = `₹ ${finalTotal.toFixed(2)}`;
+        }
+
+        // Handle form submission (for demonstration)
+        document
+          .getElementById("checkout-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            alert("Order Placed Successfully! (This is a demo)");
+            // In a real application, you would send this data to your backend
+          });
+
+        renderOrderSummary();
+      });
+    </script>
+
+    <!-- Success Modal (Hidden by default) -->
+    <style>
+      /* Keyframes for all animations */
+      @keyframes modal-fade-in {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes draw-circle {
+        from {
+          stroke-dashoffset: 283;
+        } /* Circumference of a 45-radius circle */
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes draw-check {
+        from {
+          stroke-dashoffset: 50;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes confetti-burst {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Modal Styling */
+      .success-modal-container.is-visible {
+        display: flex;
+      }
+      .success-modal-content {
+        /* This will be animated by the main modal entrance animation */
+      }
+
+      /* Animated Icon Styling */
+      .success-icon .circle {
+        stroke-dasharray: 283;
+        stroke-dashoffset: 283;
+        animation: draw-circle 1s ease-out 0.2s forwards;
+      }
+      .success-icon .checkmark {
+        stroke-dasharray: 50;
+        stroke-dashoffset: 50;
+        animation: draw-check 0.8s ease-out 1s forwards;
+      }
+
+      /* Confetti Styling */
+      .confetti {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        background-color: var(--color);
+        border-radius: 50%;
+        opacity: 0;
+        animation: confetti-burst 1s ease-out 1.5s forwards;
+        transform: translate(-50%, -50%); /* Start from center */
+      }
+    </style>
+
+    <div
+      id="success-modal"
+      class="success-modal-container fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-[1001] hidden"
+    >
+      <div
+        class="success-modal-content bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full text-center relative overflow-hidden"
+        style="
+          animation: modal-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        "
+      >
+        <div class="relative w-20 h-20 mx-auto mb-4">
+          <div id="confetti-container" class="absolute inset-0"></div>
+
+          <svg
+            class="success-icon w-full h-full"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              class="circle"
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="#b78939"
+              stroke-width="5"
+              fill="none"
+              transform="rotate(-90 50 50)"
+            />
+            <path
+              class="checkmark"
+              d="M30 50 l15 15 l30 -30"
+              stroke="#0a2342"
+              stroke-width="6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <h3
+          class="text-2xl font-bold text-[#0a2342] mb-3"
+          style="animation: fadeInUp 0.8s ease-out 1.8s forwards; opacity: 0"
+        >
+          Success!
+        </h3>
+        <p
+          class="text-gray-600 mb-6"
+          style="animation: fadeInUp 0.8s ease-out 2s forwards; opacity: 0"
+        >
+          Your masterpiece is on its way. An email confirmation will be sent to
+          you shortly.
+        </p>
+        <button
+          onclick="closeModalAndConfetti()"
+          class="w-full bg-[#b78939] text-white py-3 rounded-full font-semibold hover:bg-[#a37b31] transition"
+          style="animation: fadeInUp 0.8s ease-out 2.2s forwards; opacity: 0"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // --- Functions to control the modal ---
+
+      // This function can be called by your form's successful submission
+      function showSuccessModal() {
+        const modal = document.getElementById("success-modal");
+        if (modal) {
+          modal.classList.remove("hidden");
+          modal.classList.add("is-visible");
+          createConfetti();
+        }
+      }
+
+      // Function for the close button
+      function closeModalAndConfetti() {
+        const modal = document.getElementById("success-modal");
+        if (modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("is-visible");
+          // Clear confetti for next time
+          const confettiContainer =
+            document.getElementById("confetti-container");
+          if (confettiContainer) confettiContainer.innerHTML = "";
+        }
+      }
+
+      // --- Confetti Generation ---
+      function createConfetti() {
+        const container = document.getElementById("confetti-container");
+        if (!container) return;
+
+        container.innerHTML = ""; // Clear previous confetti
+        const colors = ["#b78939", "#0a2342", "#E27D60", "#f4f4f9"];
+        const confettiCount = 30;
+
+        for (let i = 0; i < confettiCount; i++) {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+
+          const angle = Math.random() * 360;
+          const distance = Math.random() * 100 + 50; // How far the confetti travels
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          // Set styles for each particle
+          confetti.style.setProperty("--color", color);
+
+          // Using a timeout to apply transforms after the element is created
+          setTimeout(() => {
+            confetti.style.transform = `
+                    translateX(${
+                      Math.cos((angle * Math.PI) / 180) * distance
+                    }px) 
+                    translateY(${
+                      Math.sin((angle * Math.PI) / 180) * distance
+                    }px) 
+                    scale(0)
+                `;
+          }, 10);
+
+          container.appendChild(confetti);
+        }
+      }
+
+      // Example: To test the modal, you can call showSuccessModal() after 2 seconds.
+      // In your real project, you would call this after a successful form submission.
+      // setTimeout(showSuccessModal, 2000);
+    </script>
+
+    <!-- Footer -->
+    <style>
+      .creative-footer {
+        position: relative;
+        overflow: hidden; /* Important for the background SVG */
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for animated elements */
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animations */
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays for staggered effect */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background SVG */
+      .background-accent {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: spin 120s linear infinite;
+        z-index: 1;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+
+    <footer class="creative-footer bg-[#0a2342] text-white py-16 md:py-20">
+      <div class="footer-content container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 initial-hidden"
+            data-anim="animate-fadeInUp delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="./assets/logo.png"
+                alt="Tribal Indos Logo"
+                class="h-10 w-10"
+              />
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644-.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 initial-hidden"
+            data-anim="animate-fadeInUp delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="shop.html" class="hover:text-white hover:underline"
+                  >Shop All</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="hover:text-white hover:underline"
+                  >Our Story</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Meet the Artists</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Blog & Stories</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white hover:underline"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 initial-hidden"
+            data-anim="animate-fadeInUp delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 initial-hidden"
+          data-anim="animate-fadeInUp delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <script>
+      const cartCountElement = document.getElementById("cart-count");
+      const productsGrid = document.getElementById("products-grid");
+      const filterLinks = document.querySelectorAll(".filter-link");
+
+      // Product data as an array of objects
+      let products = [];
+
+      /**
+       * Loads cart data from local storage.
+       * @returns {Array} An array of cart items.
+       */
+      function getCart() {
+        const cartData = localStorage.getItem("cart");
+        return cartData ? JSON.parse(cartData) : [];
+      }
+
+      /**
+       * Saves cart data to local storage.
+       * @param {Array} cart - The cart array to save.
+       */
+      function saveCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      /**
+       * Updates and displays the cart count.
+       */
+      function updateCartCount() {
+        const cart = getCart();
+        cartCountElement.textContent = cart.length;
+      }
+
+      /**
+       * Adds a product to the cart.
+       * @param {number} id - The ID of the product.
+       * @param {string} name - The name of the product.
+       * @param {number} price - The price of the product.
+       * @param {string} image - The image URL of the product.
+       */
+      function addToCart(id, name, price, image) {
+        const cart = getCart();
+        const existingItem = cart.find((item) => item.id === id);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id, name, price, image, quantity: 1 });
+        }
+
+        saveCart(cart);
+        updateCartCount();
+      }
+
+      /**
+       * Renders the product cards based on a filter.
+       * @param {string} filter - The category to filter by ('all' or specific category).
+       */
+      function renderProducts(filter = "all") {
+        productsGrid.innerHTML = "";
+
+        // Get products from Local Storage
+        const localProducts = JSON.parse(
+          localStorage.getItem("products") || "[]"
+        );
+
+        const filteredProducts =
+          filter === "all"
+            ? localProducts
+            : localProducts.filter((p) => p.category === filter);
+
+        if (filteredProducts.length === 0) {
+          productsGrid.innerHTML =
+            '<p class="text-center text-xl text-gray-500 col-span-full">No products found in this category.</p>';
+          return;
+        }
+
+        filteredProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("product-card");
+          productCard.setAttribute("data-category", product.category);
+          productCard.innerHTML = `
+                    <img class="w-full" src="${product.mainImage}" alt="${
+            product.productName
+          }">
+                    <div class="product-details">
+                        <h3 class="text-2xl font-bold text-[#0a2342] mb-1">${
+                          product.productName
+                        }</h3>
+                        <p class="text-gray-600 mb-3">Artist: ${
+                          product.artistName
+                        }</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-2xl font-extrabold text-[#b78939]">₹ ${product.price.toLocaleString(
+                              "en-IN"
+                            )}</p>
+                            <button onclick="addToCart(${product.id}, '${
+            product.productName
+          }', ${product.price}, '${
+            product.mainImage
+          }')" class="bg-[#0a2342] text-white py-2.5 px-6 rounded-full hover:bg-[#333333] transition-colors duration-300 font-semibold text-sm">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+          productsGrid.appendChild(productCard);
+        });
+      }
+
+      // Add a click event listener to each filter link
+      filterLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent default link behavior
+
+          // Remove the 'active' class from all links
+          filterLinks.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          // Add the 'active' class to the clicked link
+          event.target.classList.add("active");
+
+          // Get the category from the clicked link
+          const selectedCategory = event.target.dataset.category;
+
+          // Render products based on the selected filter
+          renderProducts(selectedCategory);
+        });
+      });
+
+      // Initial render on page load
+      window.onload = () => {
+        renderProducts();
+        updateCartCount();
+      };
+    </script>
+  </body>
+</html>

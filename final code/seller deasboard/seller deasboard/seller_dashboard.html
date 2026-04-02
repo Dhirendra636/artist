@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Tribal Arts</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Chart.js for creating charts dynamically -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Dual-layer header style */
+        .dual-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero section for the page header with a title */
+        .hero {
+            height: 50vh;
+            background: url('seller.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+            background-repeat: no-repeat;
+            
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* General section styling for spacing */
+        .page-section {
+            padding: 6rem 0;
+            background-color: #f4f4f9;
+        }
+
+        .dashboard-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table-responsive table {
+            width: 100%;
+            white-space: nowrap;
+        }
+        .table-responsive th, .table-responsive td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .table-responsive th {
+            font-weight: 600;
+            color: #0a2342;
+            background-color: #f9fafb;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-low {
+            background-color: #fef2f2;
+            color: #ef4444;
+        }
+        .status-in-stock {
+            background-color: #ecfdf5;
+            color: #10b981;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dual-Layer Header (Seller Specific) -->
+    <div class="dual-header">
+        <!-- Top Bar -->
+        <header class="bg-white border-b border-gray-100 py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Brand and Logo -->
+                <div class="flex items-center space-x-3">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                   <path d="M12 2L2 21h20L12 2zM12 5.86L6.5 16h11L12 5.86z"/>
+                     </svg>
+                    <span class="text-2xl md:text-3xl font-extrabold text-[#0a2342] tracking-tight">Tribal <span class="text-[#b78939]">Arts</span></span>
+                </div>
+                <!-- Seller-specific Account Button -->
+                <div class="flex items-center space-x-5">
+                    <a href="seller_my_account.html" class="bg-[#b78939] text-white px-6 py-2.5 rounded-full hidden md:inline-block hover:bg-[#a37b31] transition-colors duration-300 font-semibold text-base shadow-md text-center">
+                        My Account
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Bar (Seller specific) -->
+        <header class="bg-[#0a2342] text-white py-3">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <!-- Navigation Links -->
+                <nav class="flex space-x-8 text-lg font-medium">
+                    <a href="seller_dashboard.html" class="hover:text-[#b78939] transition-colors duration-300 relative group active-link">
+                        Dashboard
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="add_product.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Add Product
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="my_products.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        My Products
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                    <a href="seller_orders.html" class="hover:text-[#b78939] transition-colors duration-300 relative group">
+                        Orders
+                        <span class="absolute left-0 bottom-0 w-full h-0.5 bg-[#b78939] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                    </a>
+                </nav>
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center relative">
+                    <input type="text" placeholder="Search..." class="pl-4 pr-10 py-2.5 text-base rounded-full focus:outline-none focus:ring-2 focus:ring-[#b78939] text-black bg-gray-100 placeholder-gray-500 w-72 shadow-inner">
+                    <button class="absolute right-3 text-gray-600 hover:text-[#b78939] transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="text-7xl font-extrabold tracking-tight">Seller Dashboard</h1>
+        </div>
+    </section>
+
+    <!-- Dashboard Content Section -->
+    <section class="page-section">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-[#0a2342] mb-12 text-center">Your Business Overview</h2>
+            
+            <!-- Key Metrics Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Sales Card -->
+                <div class="dashboard-card text-center">
+                    <h3 class="text-xl font-semibold text-gray-500 mb-2">Total Sales</h3>
+                    <p id="total-sales" class="text-4xl font-extrabold text-[#0a2342]">₹ 0</p>
+                    <p id="sales-change" class="text-sm mt-2"></p>
+                </div>
+                <!-- Products Card -->
+                <div class="dashboard-card text-center">
+                    <h3 class="text-xl font-semibold text-gray-500 mb-2">Total Products</h3>
+                    <p id="total-products" class="text-4xl font-extrabold text-[#0a2342]">0</p>
+                    <p id="products-change" class="text-sm mt-2"></p>
+                </div>
+                <!-- Orders Card -->
+                <div class="dashboard-card text-center">
+                    <h3 class="text-xl font-semibold text-gray-500 mb-2">New Orders</h3>
+                    <p id="new-orders" class="text-4xl font-extrabold text-[#0a2342]">0</p>
+                    <p id="orders-change" class="text-sm mt-2"></p>
+                </div>
+                <!-- Earnings Card -->
+                <div class="dashboard-card text-center">
+                    <h3 class="text-xl font-semibold text-gray-500 mb-2">Total Earnings</h3>
+                    <p id="total-earnings" class="text-4xl font-extrabold text-[#0a2342]">₹ 0</p>
+                    <p id="earnings-change" class="text-sm mt-2"></p>
+                </div>
+            </div>
+
+            <!-- Inventory and Product Management Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Inventory Table Card -->
+                <div class="dashboard-card">
+                    <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Inventory Status</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                            <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                                <tr>
+                                    <th class="py-3 px-6 text-left">Product Name</th>
+                                    <th class="py-3 px-6 text-center">Stock</th>
+                                    <th class="py-3 px-6 text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-body" class="text-gray-600 text-sm font-light">
+                                <!-- Dynamic inventory data will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Product Listing Guide Card -->
+                <div class="dashboard-card flex flex-col justify-between">
+                    <h2 class="text-3xl font-bold text-[#0a2342] mb-4">Product Listing Process</h2>
+                    <p class="text-gray-600 mb-6">Follow these simple steps to add your products and start selling on Tribal Arts.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center space-x-3">
+                            <span class="w-8 h-8 flex items-center justify-center bg-[#b78939] text-white rounded-full font-bold">1</span>
+                            <p class="text-lg text-gray-700">Go to the **Add Product** page from the top menu.</p>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="w-8 h-8 flex items-center justify-center bg-[#b78939] text-white rounded-full font-bold">2</span>
+                            <p class="text-lg text-gray-700">Fill in all the required product details and upload an image.</p>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="w-8 h-8 flex items-center justify-center bg-[#b78939] text-white rounded-full font-bold">3</span>
+                            <p class="text-lg text-gray-700">Submit the form, and our team will review your product.</p>
+                        </li>
+                    </ul>
+                    <a href="add_product.html" class="w-full text-center mt-6 bg-[#b78939] text-white py-3 rounded-full font-bold text-lg hover:bg-[#a37b31] transition-colors duration-300">
+                        Add a New Product
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recent Orders Section -->
+            <div class="dashboard-card mb-12">
+                <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Recent Orders</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                            <tr>
+                                <th class="py-3 px-6 text-left">Order ID</th>
+                                <th class="py-3 px-6 text-left">Product</th>
+                                <th class="py-3 px-6 text-left">Quantity</th>
+                                <th class="py-3 px-6 text-left">Price</th>
+                                <th class="py-3 px-6 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders-body" class="text-gray-600 text-sm font-light">
+                            <!-- Dynamic recent orders will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Product Performance Section -->
+            <div class="dashboard-card">
+                <h2 class="text-3xl font-bold text-[#0a2342] mb-6">Product Performance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Sales Chart -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold mb-4">Sales Over Time</h3>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <!-- Product Metrics -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-bold mb-4">Top Performing Products</h3>
+                        <div class="space-y-4" id="top-products-list">
+                            <!-- Items will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Footer</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for custom typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS for the Footer -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-playfair {
+        font-family: "Playfair Display", serif;
+      }
+      .creative-footer {
+        position: relative;
+        overflow: hidden; /* Important for the background SVG */
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Base state for animated elements */
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      /* Class added by JS to trigger animations */
+      .animate-fadeInUp {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Animation delays for staggered effect */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+
+      /* Gently rotating background SVG */
+      .background-accent {
+        position: absolute;
+        bottom: -50%;
+        left: -10%;
+        width: 800px;
+        height: 800px;
+        opacity: 0.03;
+        animation: spin 120s linear infinite;
+        z-index: 1;
+      }
+
+      .footer-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Social Icon Hover Effect */
+      .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: translateY(-4px);
+        color: #b78939;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    
+    <!-- Footer HTML -->
+    <footer class="creative-footer bg-[#0a2342] text-white py-16 md:py-20">
+      <div class="footer-content container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div
+            class="md:col-span-4 initial-hidden"
+            data-anim="animate-fadeInUp delay-1"
+          >
+            <div class="flex items-center space-x-3 mb-4">
+            <img src="./assets/logo.png" id="logo" alt="logo" width="40vw" />
+                 
+              <span class="text-2xl font-bold font-playfair">Tribal Arts</span>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed pr-4">
+              Connecting tribal artists with a global audience, ensuring fair
+              value for their authentic creations and preserving rich cultural
+              heritage.
+            </p>
+            <div class="flex space-x-5 mt-6">
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.06-1.064.049-1.644.212-2.126.41a3.096 3.096 0 00-1.13 1.13c-.198.482-.361 1.062-.41 2.126-.049 1.023-.06 1.353-.06 3.807v.468c0 2.456.011 2.784.06 3.807.049 1.064.212 1.644.41 2.126a3.096 3.096 0 001.13 1.13c.482.198 1.062.361 2.126.41 1.023.049 1.353.06 3.807.06h.468c2.456 0 2.784-.011 3.807-.06 1.064-.049 1.644.212 2.126-.41a3.096 3.096 0 001.13-1.13c.198-.482.361-1.062.41-2.126.049-1.023.06-1.353.06-3.807v-.468c0-2.456-.011-2.784-.06-3.807-.049-1.064-.212-1.644-.41-2.126a3.096 3.096 0 00-1.13-1.13c-.482-.198-1.062-.361-2.126-.41-1.023-.049-1.353-.06-3.807-.06z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    d="M12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.468a3.333 3.333 0 110-6.666 3.333 3.333 0 010 6.666zM17.402 6.556a1.302 1.302 0 100-2.604 1.302 1.302 0 000 2.604z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-icon text-gray-300"
+                ><svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 initial-hidden"
+            data-anim="animate-fadeInUp delay-2"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li>
+                <a href="seller_dashboard.html" class="hover:text-white hover:underline"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a href="add_product.html" class="hover:text-white hover:underline"
+                  >Add Products</a
+                >
+              </li>
+              <li>
+                <a href="my_products.html" class="hover:text-white hover:underline"
+                  >   My Products   </a
+                >
+              </li>
+              <li>
+                <a href="seller_my_account.html" class="hover:text-white hover:underline"
+                  >Profile </a
+                >
+              </li>
+              <li>
+                <a href="seller_orders.html" class="hover:text-white hover:underline"
+                  >Order    </a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="md:col-span-6 initial-hidden"
+            data-anim="animate-fadeInUp delay-3"
+          >
+            <h3 class="font-bold text-lg mb-4 uppercase tracking-wider">
+              Join Our Community
+            </h3>
+            <p class="text-sm text-gray-300 mb-4">
+              Subscribe to our newsletter for exclusive updates, new arrivals,
+              and stories from our artisans.
+            </p>
+            <form class="flex flex-col sm:flex-row mt-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-full px-4 py-3 text-sm text-black bg-white rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-[#b78939] mb-2 sm:mb-0"
+              />
+              <button
+                type="submit"
+                class="bg-[#b78939] text-[#0a2342] font-bold px-6 py-3 rounded-md sm:rounded-l-none hover:bg-[#a37b31] transition-colors duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-16 pt-8 border-t border-gray-700 text-center text-sm text-gray-400 initial-hidden"
+          data-anim="animate-fadeInUp delay-4"
+        >
+          &copy; 2025 Tribal Indos. All Rights Reserved. Made with in India.
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for the Footer Animations -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const animClasses = entry.target.dataset.anim.split(" ");
+                entry.target.classList.add(...animClasses);
+                entry.target.classList.remove("initial-hidden");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        document.querySelectorAll(".initial-hidden").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
